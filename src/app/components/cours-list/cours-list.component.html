@@ -1,0 +1,10 @@
+<mat-slide-toggle>Toggle me!</mat-slide-toggle>
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile 
+    *ngFor="let tile of tiles"
+    [colspan]="tile.cols"
+    [rowspan]="tile.rows"
+    class="mat-grid-tile-with-border"
+    ><p>{{ tile.text }}</p>
+  </mat-grid-tile>
+</mat-grid-list>

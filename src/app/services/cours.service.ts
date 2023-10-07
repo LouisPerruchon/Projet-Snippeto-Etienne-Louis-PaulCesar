@@ -13,7 +13,7 @@ export class CoursService {
 
   getCourses(): Observable<Cours[]> {
     const response = this.http.get<Cours[]>(this.apiUrl);
-    console.log(response)
+    console.log(response);
     return response;
   }
 }

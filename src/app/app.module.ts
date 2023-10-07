@@ -6,19 +6,19 @@ import { AppComponent } from './app.component';
 import { CoursListComponent } from './components/cours-list/cours-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { TyestComponent } from './components/tyest/tyest.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    CoursListComponent,
-    TyestComponent
+    CoursListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatGridListModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

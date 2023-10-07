@@ -1,8 +1,11 @@
 import { Snippets } from "./snippets";
 
 export interface Cours {
-    id : number;
-    name : string ;
-    Date : Date;
-    Snippets : Snippets[]
+    id : string;
+    title : string ;
+    description : string;
+    snippets : Snippets[]
 }
+
+
+  
