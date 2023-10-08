@@ -8,6 +8,12 @@
   width:100%
 }
 
-.course-snippets.expanded {
-  min-width: 100vh;
+.course-snippet-panel .expanded {
+  background-color: aqua !important;
+}
+
+.snippet-tag-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px; /* Adjust the gap as needed */
 }

@@ -10,16 +10,6 @@ export class CoursListItemSnippetComponent implements OnInit {
   constructor() {}
   @Input()
   snippet!: Snippet;
-  isExpanded = false;
-
-  expandToWholePage(): void {
-    this.isExpanded = !this.isExpanded;
-  }
-
-  @HostListener('window:keydown.escape')
-  closeExpandedDiv() {
-    this.isExpanded = false;
-  }
 
   ngOnInit(): void {}
 }

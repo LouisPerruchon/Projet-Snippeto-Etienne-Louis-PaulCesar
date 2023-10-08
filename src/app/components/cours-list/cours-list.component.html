@@ -1,9 +1,5 @@
 <div class="cours-list-container">
-<mat-accordion class="cours-list-acccordion">
-  <app-cours-list-item
-    *ngFor="let cours of courses"
-    [cours]="cours"
-  ></app-cours-list-item>
-</mat-accordion>
+  <mat-accordion *ngFor="let cours of courses" class="cours-list-acccordion">
+    <app-cours-list-item [cours]="cours"></app-cours-list-item>
+  </mat-accordion>
 </div>
-
