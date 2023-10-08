@@ -1,5 +1,15 @@
 /* styles.css (global) or your-component.css (component-specific) */
 .mat-grid-tile-with-border {
-    border: 1px solid #ccc; /* You can adjust the border properties as needed */
-  }
-  
+  border: 1px solid #ccc; /* You can adjust the border properties as needed */
+}
+
+.cours-list-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+
+}
+
+.cours-list-acccordion {
+  width: 100%;
+}

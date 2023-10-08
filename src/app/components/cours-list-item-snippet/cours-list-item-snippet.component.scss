@@ -1,0 +1,13 @@
+.course-snippets {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+}
+
+.course-snippet-panel{
+  width:100%
+}
+
+.course-snippets.expanded {
+  min-width: 100vh;
+}

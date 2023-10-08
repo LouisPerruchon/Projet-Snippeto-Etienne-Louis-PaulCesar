@@ -1,0 +1,17 @@
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header class="cours-list-item-panel">
+    <mat-panel-title>
+      {{ cours?.title }}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{ cours?.description }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="cours-snippet-container">
+    <app-cours-list-item-snippet
+      *ngFor="let snippet of cours?.snippets"
+      [snippet]="snippet"
+      class="course-snippet-parent"
+    ></app-cours-list-item-snippet>
+  </div>
+</mat-expansion-panel>

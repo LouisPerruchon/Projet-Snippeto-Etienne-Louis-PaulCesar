@@ -8,28 +8,15 @@ import { CoursService } from 'src/app/services/cours.service';
   templateUrl: './cours-list.component.html',
   styleUrls: ['./cours-list.component.scss'],
 })
-
 export class CoursListComponent implements OnInit {
-    
-  courses : Cours[] = []
-  tiles: Tile[] = []
+  courses: Cours[] = [];
+  panelOpenState = false;
 
-  constructor(private coursService : CoursService) {
-    this.tiles = [
-      {text: 'One', cols: 1, rows: 3, color: 'lightblue'},
-      {text: 'Two', cols: 2, rows: 2, color: 'lightgreen'},
-      {text: 'Three', cols: 1, rows: 2, color: 'lightpink'},
-      {text: 'Four', cols: 3, rows: 1, color: '#DDBDF1'},
-    ];
-    console.log(this.tiles);
-  }
-  
+  constructor(private coursService: CoursService) {}
 
   ngOnInit(): void {
-    console.log('test');
-    this.coursService.getCourses().subscribe(
-      (data: Cours[]) => 
-      this.courses = data);
+    this.coursService
+      .getCourses()
+      .subscribe((data: Cours[]) => (this.courses = data));
   }
-
 }

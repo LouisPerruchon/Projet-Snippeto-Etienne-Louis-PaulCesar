@@ -1,0 +1,28 @@
+.nav-bar {
+  position: fixed;
+  height: 100px;
+}
+.nav-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-title {
+  font-size: 3rem;
+}
+
+.nav-link {
+  color: white;
+}
+
+.header-button {
+  font-size: 35px;
+  transition: color 0.3s;
+}
+
+.header-button:hover{
+    color: aqua;
+}
