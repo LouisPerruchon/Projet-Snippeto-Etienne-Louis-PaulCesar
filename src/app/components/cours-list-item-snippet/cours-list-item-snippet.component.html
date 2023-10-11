@@ -1,0 +1,31 @@
+<mat-accordion class="course-snippet-accordion">
+  <mat-expansion-panel class="course-snippet-panel" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>{{ snippet.id }}</h4>
+      </mat-panel-title>
+      <mat-panel-description>
+        <p>{{ snippet.description }}</p>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <mat-grid-tile-header> <h5>Code</h5></mat-grid-tile-header>
+        <div>
+          <p>{{ snippet.code }}</p>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header><h5>Explanation</h5></mat-grid-tile-header>
+        <div>
+          <p>{{ snippet.explanation }}</p>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="snippet-tag-container">
+      <mat-card *ngFor="let tag of snippet.tags" class="snippet-tag">
+        {{ tag }}
+      </mat-card>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

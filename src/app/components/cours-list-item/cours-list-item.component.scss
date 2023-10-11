@@ -1,0 +1,16 @@
+.cours-list-item-panel {
+  height: 150px;
+  background-color: grey !important;
+}
+
+.cours-snippet-container {
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Adjust the gap as needed */
+  margin: 0 auto; /* Optional: Center the container */
+}
+
+.course-snippet-parent{
+  width: 100%;
+}
