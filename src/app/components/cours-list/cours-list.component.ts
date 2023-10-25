@@ -15,8 +15,8 @@ export class CoursListComponent implements OnInit {
   constructor(private coursService: CoursService) {}
 
   ngOnInit(): void {
-    this.coursService
-      .getCourses()
-      .subscribe((data: Cours[]) => (this.courses = data));
+    this.coursService.getCourses().subscribe((data: Cours[]) => {
+      this.courses = data;
+    });
   }
 }
