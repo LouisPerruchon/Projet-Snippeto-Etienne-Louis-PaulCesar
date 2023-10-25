@@ -4,16 +4,15 @@ import { Observable } from 'rxjs';
 import { Cours } from '../models/cours';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursService {
   private apiUrl = 'http://localhost:5000/courses';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getCourses(): Observable<Cours[]> {
     const response = this.http.get<Cours[]>(this.apiUrl);
-    console.log(response);
     return response;
   }
 }
