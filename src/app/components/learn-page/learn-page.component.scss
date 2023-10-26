@@ -1,0 +1,18 @@
+.select-and-research {
+    display: flex;
+  }
+  
+  .select-section, .research-section {
+    width: 50%;
+    padding: 50px; /* Adjust padding as needed */
+    mat-card {
+        min-width: 200px; /* Changer selon vos besoins */
+        min-height: 150px; /* Changer selon vos besoins */
+      }
+  }
+  
+  .selected {
+    background-color: rgb(12, 114, 12);
+    color : white;
+  }
+
