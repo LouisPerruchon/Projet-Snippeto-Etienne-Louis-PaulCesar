@@ -16,7 +16,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { CoursListItemSnippetComponent } from './components/cours-list-item-snippet/cours-list-item-snippet.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { SnippetCreationDialogComponent } from './components/snippet-creation-dialog/snippet-creation-dialog.component';
+import { MatButtonModule } from '@angular/material/button'; // Import MatButtonModule
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +29,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     CoursListItemComponent,
     CoursListItemSnippetComponent,
     SidebarComponent,
+    SnippetCreationDialogComponent
   ],
 
   imports: [
@@ -39,6 +44,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatCardModule,
     FormsModule,
     MatDividerModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],

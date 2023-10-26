@@ -1,15 +1,13 @@
-import {
-  Component,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Cours } from 'src/app/models/cours';
 import { Snippet } from 'src/app/models/snippet';
-import { Tile } from 'src/app/models/tile';
 import { SnippetService } from 'src/app/services/snippet.service';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { SnippetCreationDialogComponent } from '../snippet-creation-dialog/snippet-creation-dialog.component';
 
 @Component({
   selector: 'app-cours-list-item',
@@ -21,18 +19,27 @@ export class CoursListItemComponent implements OnInit {
   @Output() snippetChange = new EventEmitter<Snippet>();
 
   snippets: Snippet[] = [];
-  constructor(private snippetsService: SnippetService) {}
-  code: string = '';
-  id: string = '';
-  description: string = '';
-  explanation: string = '';
-  tags: string = '';
+  constructor(
+    private snippetsService: SnippetService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.prepareSnippets();
-    console.log(this.snippets);
   }
 
+  openCreateSnippetDialog() {
+    const dialogRef = this.dialog.open(SnippetCreationDialogComponent, {
+      width: '50%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== null) {
+        this.submitForm(result);
+      }
+      // Handle the form data here
+    });
+  }
   receiveComments(commentData: Snippet) {
     this.snippetChange.emit(commentData);
   }
@@ -49,18 +56,14 @@ export class CoursListItemComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    const formData: Snippet = {
-      id: '',
-      code: this.code,
+  submitForm(formData: any) {
+    const dataToPost: Snippet = {
+      ...formData,
       courseId: this.cours!.id,
-      description: this.description,
-      explanation: this.explanation,
-      tags: this.tags.split(','), // Assuming tags are comma-separated
       comments: [],
     };
 
-    this.snippetsService.addSnippet(formData).subscribe((data) => {
+    this.snippetsService.addSnippet(dataToPost).subscribe((data) => {
       this.snippetsService.getSnippets().subscribe((data: Snippet[]) => {
         this.snippets = this.filteredSnippets(data);
       });

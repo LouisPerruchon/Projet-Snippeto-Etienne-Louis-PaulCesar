@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Add Snippet</h2>
+<div mat-dialog-content>
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field style="width: 100%" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="description"
+        name="description"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field style="width: 100%" appearance="fill">
+      <mat-label>Code</mat-label>
+      <textarea matInput [(ngModel)]="code" name="code"></textarea>
+    </mat-form-field>
+    <mat-form-field style="width: 100%" appearance="fill">
+      <mat-label>Explanation</mat-label>
+      <input matInput [(ngModel)]="explanation" name="explanation" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Tags</mat-label>
+      <input matInput [(ngModel)]="tags" name="tags" />
+    </mat-form-field>
+    <div class="button-container">
+      <button type="reset" color="primary" (click)="cancle()">Cancle</button>
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
+  </form>
+</div>

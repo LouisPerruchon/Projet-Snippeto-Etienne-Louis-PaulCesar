@@ -19,26 +19,29 @@
       </p>
       <mat-divider></mat-divider>
     </div>
-    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
-      <div>
-        <label for="user_name">User Name:</label>
+    <form *ngIf="commentSnippet" (ngSubmit)="onSubmit()" #myForm="ngForm">
+      <mat-form-field style="width:50%" appearance="fill">
+        <mat-label>User Name</mat-label>
         <input
-          type="text"
-          id="user_name"
-          name="user_name"
+          matInput
           [(ngModel)]="user_name"
           required
+          name="user_name"
+          id="user_name"
         />
-      </div>
-      <div>
-        <label for="comment">Comment:</label>
+      </mat-form-field>
+
+      <mat-form-field style="width:100%" appearance="fill">
+        <mat-label>Comment</mat-label>
         <textarea
-          id="comment"
-          name="comment"
+          matInput
           [(ngModel)]="form_comment"
           required
+          name="form_comment"
+          id="form_comment"
         ></textarea>
-      </div>
+      </mat-form-field>
+
       <button type="submit">Submit</button>
     </form>
   </div>

@@ -6,6 +6,9 @@
     <mat-panel-description>
       {{ cours?.description }}
     </mat-panel-description>
+    <button mat-raised-button (click)="openCreateSnippetDialog()">
+      Create Modal
+    </button>
   </mat-expansion-panel-header>
 
   <div class="cours-snippet-container">
@@ -15,30 +18,5 @@
       (snippetChange)="receiveComments($event)"
       class="course-snippet-parent"
     ></app-cours-list-item-snippet>
-  </div>
-  <div class="snippet-add-form-container">
-    <form (ngSubmit)="onSubmit()">
-      <label>
-        Code:
-        <input type="text" [(ngModel)]="code" name="code" />
-      </label>
-      <label>
-        Id:
-        <input type="text" [(ngModel)]="id" name="id" />
-      </label>
-      <label>
-        Description:
-        <input type="text" [(ngModel)]="description" name="description" />
-      </label>
-      <label>
-        Explanation:
-        <input type="text" [(ngModel)]="explanation" name="explanation" />
-      </label>
-      <label>
-        Tags:
-        <input type="text" [(ngModel)]="tags" name="tags" />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
   </div>
 </mat-expansion-panel>
