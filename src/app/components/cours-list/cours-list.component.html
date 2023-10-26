@@ -1,5 +1,20 @@
 <div class="cours-list-container">
-  <mat-accordion *ngFor="let cours of courses" class="cours-list-acccordion">
-    <app-cours-list-item [cours]="cours"></app-cours-list-item>
-  </mat-accordion>
+  <div class="accordion-container">
+    <mat-accordion
+      *ngFor="let cours of courses"
+      class="cours-list-acccordion"
+      (click)="setSelectedCours(cours)"
+    >
+      <app-cours-list-item
+        (snippetChange)="receiveComments($event)"
+        [cours]="cours"
+      ></app-cours-list-item>
+    </mat-accordion>
+  </div>
+  <div class="separator"></div>
+  <app-sidebar
+    [cours]="selectedCours"
+    [commentSnippet]="commentSnippet"
+    class="side-bar"
+  ></app-sidebar>
 </div>

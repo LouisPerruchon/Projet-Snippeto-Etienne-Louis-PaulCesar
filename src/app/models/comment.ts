@@ -2,6 +2,6 @@ export interface Comment {
   comment: string;
   id: string;
   user_name: string;
-  date: Date;
+  date: string;
   snippet_id: string;
 }

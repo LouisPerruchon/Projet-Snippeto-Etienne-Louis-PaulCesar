@@ -1,4 +1,11 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Snippet } from 'src/app/models/snippet';
 
 @Component({
@@ -10,6 +17,11 @@ export class CoursListItemSnippetComponent implements OnInit {
   constructor() {}
   @Input()
   snippet!: Snippet;
+  @Output() snippetChange = new EventEmitter<Snippet>();
+
+  showComments() {
+    this.snippetChange.emit(this.snippet);
+  }
 
   ngOnInit(): void {}
 }

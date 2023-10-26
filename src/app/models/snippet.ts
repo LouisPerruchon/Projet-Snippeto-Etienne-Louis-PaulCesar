@@ -7,4 +7,5 @@ export interface Snippet {
   explanation: string;
   tags: string[];
   comments: Comment[];
+  courseId: string;
 }

@@ -1,0 +1,15 @@
+.side-bar-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: lightgray;
+}
+
+.tags-container {
+  padding: 5px;
+  display: flex;
+  gap: 5px; /* Adjust the gap as needed */
+}
+
+.tag {
+  min-width: 50px;
+}

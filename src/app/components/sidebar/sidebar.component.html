@@ -1,0 +1,45 @@
+<div class="side-bar-container">
+  <span><h1>Additional Information</h1></span>
+  <div *ngIf="cours">
+    <span> <h3>Number of Snippets</h3></span>
+    <div>X</div>
+    <span> <h2>Time periode</h2></span>
+    <div>earliest snippet - last snippet</div>
+    <span><h3>Snippet Tags</h3></span>
+    <div class="tags-container" *ngIf="cours && cours.snippets">
+      <mat-card *ngFor="let tag of tags" class="snippet-tag">
+        {{ tag }}
+      </mat-card>
+    </div>
+    <span><h2>Snippet Comments</h2></span>
+    <div *ngFor="let comment of comments">
+      <h4>{{ comment.user_name }}</h4>
+      <p style="padding-left: 5px">
+        {{ comment.comment }}
+      </p>
+      <mat-divider></mat-divider>
+    </div>
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+      <div>
+        <label for="user_name">User Name:</label>
+        <input
+          type="text"
+          id="user_name"
+          name="user_name"
+          [(ngModel)]="user_name"
+          required
+        />
+      </div>
+      <div>
+        <label for="comment">Comment:</label>
+        <textarea
+          id="comment"
+          name="comment"
+          [(ngModel)]="form_comment"
+          required
+        ></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
