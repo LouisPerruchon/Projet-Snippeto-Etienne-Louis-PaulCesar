@@ -17,12 +17,27 @@
       <mat-label>Explanation</mat-label>
       <input matInput [(ngModel)]="explanation" name="explanation" />
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field style="width: 100%" appearance="fill">
       <mat-label>Tags</mat-label>
-      <input matInput [(ngModel)]="tags" name="tags" />
+      <mat-chip-list #chipList aria-label="Tags">
+        <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+          {{ tag }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="New Tag..."
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
     </mat-form-field>
+
     <div class="button-container">
-      <button type="reset" color="primary" (click)="cancle()">Cancle</button>
+      <button type="reset" color="accent" (click)="cancle()">Cancle</button>
       <button type="submit" mat-raised-button color="primary">Submit</button>
     </div>
   </form>

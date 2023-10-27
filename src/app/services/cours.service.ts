@@ -15,4 +15,9 @@ export class CoursService {
     const response = this.http.get<Cours[]>(this.apiUrl);
     return response;
   }
+
+  addCours(data: Cours): Observable<any> {
+    const response = this.http.post<Cours>(this.apiUrl, data);
+    return response;
+  }
 }

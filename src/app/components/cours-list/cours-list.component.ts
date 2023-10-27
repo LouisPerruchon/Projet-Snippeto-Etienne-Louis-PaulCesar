@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Comment } from 'src/app/models/comment';
 import { Cours } from 'src/app/models/cours';
 import { Snippet } from 'src/app/models/snippet';
 import { Tile } from 'src/app/models/tile';
 import { CoursService } from 'src/app/services/cours.service';
+import { CoursCreationDialogComponent } from '../cours-creation-dialog/cours-creation-dialog.component';
 
 @Component({
   selector: 'app-cours-list',
@@ -16,7 +18,7 @@ export class CoursListComponent implements OnInit {
   selectedCours: Cours | undefined;
   commentSnippet: Snippet | undefined;
 
-  constructor(private coursService: CoursService) {}
+  constructor(private coursService: CoursService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.coursService.getCourses().subscribe((data: Cours[]) => {
@@ -26,9 +28,43 @@ export class CoursListComponent implements OnInit {
 
   receiveComments(commentData: Snippet) {
     this.commentSnippet = commentData;
+
+    console.log(commentData.id)
+    if (!commentData.id) {
+      this.coursService.getCourses().subscribe((data: Cours[]) => {
+        this.courses = data;
+        this.selectedCours = this.courses.find(
+          (cours: Cours) => cours.id === commentData.courseId
+        );
+      });
+    }
   }
 
   setSelectedCours(selectedCours: Cours) {
     this.selectedCours = selectedCours;
+  }
+
+  openCreateCoursDialog() {
+    const dialogRef = this.dialog.open(CoursCreationDialogComponent, {
+      width: '50%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== null) {
+        this.submitForm(result);
+      }
+      // Handle the form data here
+    });
+  }
+  submitForm(formData: any) {
+    const dataToPost: Cours = {
+      ...formData,
+    };
+
+    this.coursService.addCours(dataToPost).subscribe((data) => {
+      this.coursService.getCourses().subscribe((data: Cours[]) => {
+        this.courses = data;
+      });
+    });
   }
 }

@@ -6,11 +6,11 @@
     <span> <h2>Time periode</h2></span>
     <div>earliest snippet - last snippet</div>
     <span><h3>Snippet Tags</h3></span>
-    <div class="tags-container" *ngIf="cours && cours.snippets">
-      <mat-card *ngFor="let tag of tags" class="snippet-tag">
-        {{ tag }}
-      </mat-card>
-    </div>
+    <mat-chip-list aria-label="Tags">
+      <mat-chip *ngFor="let tag of tags" color="accent" selected="">{{
+        tag
+      }}</mat-chip>
+    </mat-chip-list>
     <span><h2>Snippet Comments</h2></span>
     <div *ngFor="let comment of comments">
       <h4>{{ comment.user_name }}</h4>
@@ -20,7 +20,7 @@
       <mat-divider></mat-divider>
     </div>
     <form *ngIf="commentSnippet" (ngSubmit)="onSubmit()" #myForm="ngForm">
-      <mat-form-field style="width:50%" appearance="fill">
+      <mat-form-field style="width: 50%" appearance="fill">
         <mat-label>User Name</mat-label>
         <input
           matInput
@@ -31,7 +31,7 @@
         />
       </mat-form-field>
 
-      <mat-form-field style="width:100%" appearance="fill">
+      <mat-form-field style="width: 100%" appearance="fill">
         <mat-label>Comment</mat-label>
         <textarea
           matInput

@@ -64,6 +64,7 @@ export class CoursListItemComponent implements OnInit {
     };
 
     this.snippetsService.addSnippet(dataToPost).subscribe((data) => {
+      this.snippetChange.emit(dataToPost);
       this.snippetsService.getSnippets().subscribe((data: Snippet[]) => {
         this.snippets = this.filteredSnippets(data);
       });

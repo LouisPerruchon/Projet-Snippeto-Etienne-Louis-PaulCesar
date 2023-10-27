@@ -20,7 +20,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SnippetCreationDialogComponent } from './components/snippet-creation-dialog/snippet-creation-dialog.component';
-import { MatButtonModule } from '@angular/material/button'; // Import MatButtonModule
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import { CoursCreationDialogComponent } from './components/cours-creation-dialog/cours-creation-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +33,9 @@ import { MatButtonModule } from '@angular/material/button'; // Import MatButtonM
     CoursListItemComponent,
     CoursListItemSnippetComponent,
     SidebarComponent,
-    SnippetCreationDialogComponent
+    SnippetCreationDialogComponent,
+    CoursCreationDialogComponent,
+    
   ],
 
   imports: [
@@ -47,7 +53,9 @@ import { MatButtonModule } from '@angular/material/button'; // Import MatButtonM
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,13 @@
 <div class="cours-list-container">
   <div class="accordion-container">
+    <button
+      class="cours-creation-button"
+      mat-raised-button
+      color="accent"
+      (click)="openCreateCoursDialog()"
+    >
+      Create Cours
+    </button>
     <mat-accordion
       *ngFor="let cours of courses"
       class="cours-list-acccordion"

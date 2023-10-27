@@ -22,10 +22,11 @@
         </div>
       </mat-grid-tile>
     </mat-grid-list>
-    <div class="snippet-tag-container">
-      <mat-card *ngFor="let tag of snippet.tags" class="snippet-tag">
-        {{ tag }}
-      </mat-card>
-    </div>
+
+    <mat-chip-list aria-label="Tags">
+      <mat-chip *ngFor="let tag of snippet.tags" color="accent" selected="">{{
+        tag
+      }}</mat-chip>
+    </mat-chip-list>
   </mat-expansion-panel>
 </mat-accordion>
