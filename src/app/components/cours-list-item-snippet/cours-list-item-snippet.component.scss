@@ -4,16 +4,42 @@
   display: flex;
 }
 
-.course-snippet-panel{
-  width:100%
+.course-snippet-panel:hover {
+}
+
+.course-snippet-panel {
+  width: 100%;
 }
 
 .course-snippet-panel .expanded {
   background-color: aqua !important;
 }
 
-.snippet-tag-container{
+.snippet-tag-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 10px; /* Adjust the gap as needed */
+}
+
+.code-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  
+}
+
+.code-title {
+  display: flex;
+  background-color: lightgray;
+  width: 100%;
+
+  align-items: center;
+}
+
+.code{
+  display:flex;
+  width:100%;
+  height:100%;
+  overflow-y:auto
 }

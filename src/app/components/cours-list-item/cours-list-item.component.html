@@ -1,4 +1,8 @@
-<mat-expansion-panel hideToggle>
+<mat-expansion-panel
+  class="should-highlight-on-hover"
+  style="background-color: lightgrey"
+  hideToggle
+>
   <mat-expansion-panel-header class="cours-list-item-panel">
     <mat-panel-title>
       {{ cours?.title }}
@@ -6,11 +10,20 @@
     <mat-panel-description>
       {{ cours?.description }}
     </mat-panel-description>
+    <button
+      color="accent"
+      mat-raised-button
+      (click)="openCreateSnippetDialog()"
+    >
+      Create Snippet
+    </button>
   </mat-expansion-panel-header>
+
   <div class="cours-snippet-container">
     <app-cours-list-item-snippet
-      *ngFor="let snippet of cours?.snippets"
+      *ngFor="let snippet of snippets"
       [snippet]="snippet"
+      (snippetChange)="receiveComments($event)"
       class="course-snippet-parent"
     ></app-cours-list-item-snippet>
   </div>
