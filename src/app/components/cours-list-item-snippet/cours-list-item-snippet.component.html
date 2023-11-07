@@ -1,5 +1,8 @@
 <mat-accordion (click)="showComments()" class="course-snippet-accordion">
-  <mat-expansion-panel class="course-snippet-panel" hideToggle>
+  <mat-expansion-panel
+    class="course-snippet-panel should-highlight-on-hover"
+    hideToggle
+  >
     <mat-expansion-panel-header>
       <mat-panel-title>
         <h4>{{ snippet.id }}</h4>
@@ -8,17 +11,25 @@
         <p>{{ snippet.description }}</p>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-grid-list cols="2" rowHeight="2:1">
-      <mat-grid-tile>
-        <mat-grid-tile-header> <h5>Code</h5></mat-grid-tile-header>
-        <div>
-          <p>{{ snippet.code }}</p>
+    <mat-grid-list style="margin-bottom: 16px" cols="2" rowHeight="2:1">
+      <mat-grid-tile style="flex-wrap: wrap">
+        <div class="code-container">
+          <div class="code-title">
+            <h4 style="margin-top: 16px; padding-left: 16px">Code</h4>
+          </div>
+          <pre class="code">
+          <code style="width: 100%; height: 100%;"  [lineNumbers]="true" [highlight]="snippet.code"></code>
+          </pre>
         </div>
       </mat-grid-tile>
       <mat-grid-tile>
-        <mat-grid-tile-header><h5>Explanation</h5></mat-grid-tile-header>
-        <div>
-          <p>{{ snippet.explanation }}</p>
+        <div class="code-container">
+          <div class="code-title">
+            <h4 style="margin-top: 16px; padding-left: 16px">Explanation</h4>
+          </div>
+          <pre class="code">
+          <p style="width: 100%; height: 100%;">{{ snippet.explanation }}</p>
+          </pre>
         </div>
       </mat-grid-tile>
     </mat-grid-list>

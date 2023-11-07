@@ -7,7 +7,6 @@
   display: flex;
   padding: 10px;
   height: 100%;
-  overflow-y: scroll;
   justify-content: space-between;
 }
 
@@ -16,6 +15,11 @@
   flex-wrap: nowrap;
   width: 70%;
   flex-direction: column;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.accordion-container::-webkit-scrollbar {
+  display: none;
 }
 
 .cours-list-acccordion {
@@ -26,11 +30,12 @@
   width: 10px;
 }
 .side-bar {
-  flex-grow: 1;
+  flex-grow: 1;display: flex;
   position: static;
 }
 
 .cours-creation-button {
   width: 100%;
   margin-bottom: 10px;
+
 }

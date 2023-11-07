@@ -29,7 +29,7 @@ export class CoursListComponent implements OnInit {
   receiveComments(commentData: Snippet) {
     this.commentSnippet = commentData;
 
-    console.log(commentData.id)
+    console.log(commentData.id);
     if (!commentData.id) {
       this.coursService.getCourses().subscribe((data: Cours[]) => {
         this.courses = data;
@@ -41,6 +41,8 @@ export class CoursListComponent implements OnInit {
   }
 
   setSelectedCours(selectedCours: Cours) {
+    if (selectedCours.id !== this.commentSnippet?.courseId)
+      this.commentSnippet = undefined;
     this.selectedCours = selectedCours;
   }
 

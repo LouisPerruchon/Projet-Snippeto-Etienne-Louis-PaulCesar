@@ -1,7 +1,14 @@
 .side-bar-container {
-  width: 100%;
-  min-height: 100vh;
   background-color: lightgray;
+  flex-grow: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+}
+
+.side-bar-container::-webkit-scrollbar {
+  display: none;
 }
 
 .tags-container {

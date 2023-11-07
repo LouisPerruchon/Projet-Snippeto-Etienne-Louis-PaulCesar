@@ -22,8 +22,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SnippetCreationDialogComponent } from './components/snippet-creation-dialog/snippet-creation-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { CoursCreationDialogComponent } from './components/cours-creation-dialog/cours-creation-dialog.component';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,6 @@ import { CoursCreationDialogComponent } from './components/cours-creation-dialog
     SidebarComponent,
     SnippetCreationDialogComponent,
     CoursCreationDialogComponent,
-    
   ],
 
   imports: [
@@ -55,9 +55,22 @@ import { CoursCreationDialogComponent } from './components/cours-creation-dialog
     MatFormFieldModule,
     MatButtonModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    HighlightModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          css: () => import('highlight.js/lib/languages/css'),
+          xml: () => import('highlight.js/lib/languages/xml'),
+        },
+      },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
