@@ -1,0 +1,22 @@
+.side-bar-container {
+  background-color: lightgray;
+  flex-grow: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+}
+
+.side-bar-container::-webkit-scrollbar {
+  display: none;
+}
+
+.tags-container {
+  padding: 5px;
+  display: flex;
+  gap: 5px; /* Adjust the gap as needed */
+}
+
+.tag {
+  min-width: 50px;
+}
