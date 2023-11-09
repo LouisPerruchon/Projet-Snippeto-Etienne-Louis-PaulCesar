@@ -7,7 +7,7 @@ import { Cours } from '../models/cours';
   providedIn: 'root',
 })
 export class CoursService {
-  private apiUrl = 'http://localhost:5000/courses';
+  private apiUrl = 'http://localhost:5555/courses';
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SnippetService {
-  private apiUrl = 'http://localhost:5000/snippets';
+  private apiUrl = 'http://localhost:5555/snippets';
   constructor(private httpClient: HttpClient) {}
 
   addSnippet(snippet: Snippet): Observable<any> {
