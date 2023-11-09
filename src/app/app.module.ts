@@ -26,11 +26,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { CoursCreationDialogComponent } from './components/cours-creation-dialog/cours-creation-dialog.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import { LearnPageComponent } from './components/learn-page/learn-page.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CardComponent } from './components/card/card.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
+import { LearnPageComponent } from './components/learn-page/learn-page.component';
+import { CardPageComponent } from './components/card-page/card-page.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     SidebarComponent,
     SnippetCreationDialogComponent,
     CoursCreationDialogComponent,
-    LearnPageComponent,
     CardComponent,
+    LearnPageComponent,
+    CardPageComponent
   ],
 
   imports: [
