@@ -10,6 +10,9 @@
     <mat-panel-description>
       <p>{{ snippet.description }}</p>
     </mat-panel-description>
+    <button color="accent" mat-raised-button (click)="openPatchSnippet($event)">
+      <mat-icon matTooltip="Update Snippet">update</mat-icon>
+    </button>
   </mat-expansion-panel-header>
   <mat-grid-list style="margin-bottom: 16px" cols="2" rowHeight="2:1">
     <mat-grid-tile style="flex-wrap: wrap">

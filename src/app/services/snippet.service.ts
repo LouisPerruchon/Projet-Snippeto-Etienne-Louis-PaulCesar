@@ -10,13 +10,22 @@ export class SnippetService {
   private apiUrl = 'http://localhost:5555/snippets';
   constructor(private httpClient: HttpClient) {}
 
-  addSnippet(snippet: Snippet): Observable<any> {
+  addSnippet(snippet: Partial<Snippet>): Observable<any> {
     const response = this.httpClient.post<Snippet>(this.apiUrl, snippet);
     return response;
   }
 
   getSnippets(): Observable<Snippet[]> {
     const response = this.httpClient.get<Snippet[]>(this.apiUrl);
+    return response;
+  }
+
+  patchSnippet(
+    snippetId: string,
+    partialSnippet: Partial<Snippet>
+  ): Observable<Snippet> {
+    const patchAPI = this.apiUrl + '/' + snippetId;
+    const response = this.httpClient.patch<Snippet>(patchAPI, partialSnippet);
     return response;
   }
 }

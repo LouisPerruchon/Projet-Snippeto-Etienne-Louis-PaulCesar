@@ -31,16 +31,16 @@ export class CoursListItemComponent implements OnInit {
     this.prepareSnippets();
   }
 
-  openCreateSnippetDialog() {
+  openCreateSnippetDialog(event: Event) {
+    event.stopPropagation();
     const dialogRef = this.dialog.open(SnippetCreationDialogComponent, {
       width: '50%',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: Partial<Snippet>) => {
       if (result !== null) {
         this.submitForm(result);
       }
-      // Handle the form data here
     });
   }
 
@@ -64,22 +64,24 @@ export class CoursListItemComponent implements OnInit {
     );
   }
 
-  submitForm(formData: any) {
-    const dataToPost: Snippet = {
+  submitForm(formData: Partial<Snippet>) {
+    const dataToPost: Partial<Snippet> = {
       ...formData,
       courseId: this.cours!.id,
       comments: [],
     };
 
-    this.snippetsService.addSnippet(dataToPost).subscribe((data) => {
-      this.snippetChange.emit(dataToPost);
+    this.snippetsService.addSnippet(dataToPost).subscribe((data: Snippet) => {
+      this.snippetChange.emit(data);
       this.snippetsService.getSnippets().subscribe((data: Snippet[]) => {
         this.snippets = this.filteredSnippets(data);
       });
     });
   }
 
-  openPatchCours() {
+  openPatchCours(event: Event) {
+    event.stopPropagation();
+
     const partialCoursData: Partial<Cours> = {
       title: this.cours?.title,
       description: this.cours?.description,
@@ -89,23 +91,16 @@ export class CoursListItemComponent implements OnInit {
       data: partialCoursData,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: Partial<Cours>) => {
       if (result !== null) {
         this.patchCours(result);
       }
-      // Handle the form data here
     });
   }
 
-  patchCours(formData: any) {
-    const dataToPatch: Partial<Cours> = {
-      ...formData,
-    };
-
-    this.coursService
-      .patchCours(this.cours!.id, dataToPatch)
-      .subscribe((data) => {
-        this.cours = data;
-      });
+  patchCours(formData: Partial<Cours>) {
+    this.coursService.patchCours(this.cours!.id, formData).subscribe((data) => {
+      this.cours = data;
+    });
   }
 }

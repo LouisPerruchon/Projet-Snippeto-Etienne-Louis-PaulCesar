@@ -53,19 +53,14 @@ export class CoursListComponent implements OnInit {
       width: '50%',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: Partial<Cours>) => {
       if (result !== null) {
         this.submitForm(result);
       }
-      // Handle the form data here
     });
   }
-  submitForm(formData: any) {
-    const dataToPost: Cours = {
-      ...formData,
-    };
-
-    this.coursService.addCours(dataToPost).subscribe((data) => {
+  submitForm(formData: Partial<Cours>) {
+    this.coursService.addCours(formData).subscribe(() => {
       this.coursService.getCourses().subscribe((data: Cours[]) => {
         this.courses = data;
       });

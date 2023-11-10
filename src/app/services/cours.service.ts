@@ -16,15 +16,13 @@ export class CoursService {
     return response;
   }
 
-  addCours(data: Cours): Observable<any> {
+  addCours(data: Partial<Cours>): Observable<any> {
     const response = this.http.post<Cours>(this.apiUrl, data);
     return response;
   }
 
-  patchCours(coursId: string, partialCours: Partial<Cours>) {
+  patchCours(coursId: string, partialCours: Partial<Cours>): Observable<Cours> {
     const patchAPI = this.apiUrl + '/' + coursId;
-    console.log(patchAPI)
-    console.log(partialCours)
     const response = this.http.patch<Cours>(patchAPI, partialCours);
     return response;
   }

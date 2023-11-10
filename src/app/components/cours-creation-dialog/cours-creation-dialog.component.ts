@@ -11,6 +11,7 @@ import { Cours } from 'src/app/models/cours';
 export class CoursCreationDialogComponent implements OnInit {
   title: string = '';
   description: string = '';
+  dialogTitle: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<CoursCreationDialogComponent>,
@@ -20,6 +21,9 @@ export class CoursCreationDialogComponent implements OnInit {
     if (this.data) {
       this.title = this.data.title || '';
       this.description = this.data.description || '';
+      this.dialogTitle = 'Update Cours';
+    } else {
+      this.dialogTitle = 'Add new Cours';
     }
   }
   cancle() {
@@ -27,7 +31,7 @@ export class CoursCreationDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const formData = {
+    const formData: Partial<Cours> = {
       title: this.title,
       description: this.description,
     };

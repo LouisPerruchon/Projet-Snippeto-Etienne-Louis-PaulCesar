@@ -11,16 +11,18 @@
     <mat-panel-description>
       {{ cours?.description }}
     </mat-panel-description>
-    <button
-      color="accent"
-      mat-raised-button
-      (click)="openCreateSnippetDialog()"
-    >
-      Create Snippet
-    </button>
-    <button color="accent" mat-raised-button (click)="openPatchCours()">
-      Update Cours
-    </button>
+    <div style="display: flex; justify-content: space-between; gap: 5px">
+      <button color="accent" mat-raised-button (click)="openPatchCours($event)">
+        <mat-icon matTooltip="Update Course">update</mat-icon>
+      </button>
+      <button
+        color="accent"
+        mat-raised-button
+        (click)="openCreateSnippetDialog($event)"
+      >
+        <mat-icon matTooltip="Add Snippet">add</mat-icon>
+      </button>
+    </div>
   </mat-expansion-panel-header>
 
   <mat-accordion class="course-snippet-accordion">
