@@ -59,7 +59,6 @@ export class CoursListItemSnippetComponent implements OnInit {
   }
 
   patchSnippets(formData: Partial<Snippet>) {
-    console.log(formData);
     this.snippetsService
       .patchSnippet(this.snippet!.id, formData)
       .subscribe((data) => {

@@ -23,7 +23,7 @@ export class CoursListComponent implements OnInit {
 
   ngOnInit(): void {
     this.coursService.getCourses().subscribe((data: Cours[]) => {
-      this.courses = data;
+      this.courses = data.reverse();
     });
   }
 
@@ -33,7 +33,7 @@ export class CoursListComponent implements OnInit {
     if (snippetData) {
       if (!snippetData.id) {
         this.coursService.getCourses().subscribe((data: Cours[]) => {
-          this.courses = data;
+          this.courses = data.reverse();
           this.selectedCours = this.courses.find(
             (cours: Cours) => cours.id === snippetData.courseId
           );
@@ -62,7 +62,7 @@ export class CoursListComponent implements OnInit {
   submitForm(formData: Partial<Cours>) {
     this.coursService.addCours(formData).subscribe(() => {
       this.coursService.getCourses().subscribe((data: Cours[]) => {
-        this.courses = data;
+        this.courses = data.reverse();
       });
     });
   }

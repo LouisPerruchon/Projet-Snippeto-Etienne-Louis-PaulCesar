@@ -1,6 +1,6 @@
 .side-bar-container {
+  width: 100%;
   background-color: lightgray;
-  flex-grow: 1;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -18,5 +18,4 @@
 }
 
 .tag {
-  min-width: 50px;
 }

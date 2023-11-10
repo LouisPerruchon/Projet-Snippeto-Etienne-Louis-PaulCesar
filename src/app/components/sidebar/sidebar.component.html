@@ -4,7 +4,7 @@
     style="
       display: flex;
       flex-direction: column;
-      flex-grow: 1;
+      height: 100%;
       overflow: hidden;
     "
     *ngIf="cours"
@@ -19,17 +19,31 @@
         tag
       }}</mat-chip>
     </mat-chip-list>
-    <span><h2>Snippet Comments</h2></span>
 
-    <div style="margin-top: 10px; overflow-y: scroll; flex-grow: 1">
-      <div *ngFor="let comment of comments">
-        <h4>{{ comment.user_name }}</h4>
-        <p style="padding-left: 5px">
-          {{ comment.comment }}
-        </p>
-      </div>
+    <span *ngIf="commentSnippet"><h2>Snippet Comments</h2></span>
+    <div *ngIf="comments.length === 0 && commentSnippet">
+      No comments on this Snippet.
     </div>
 
+    <div
+      v-else
+      style="
+        flex-grow: 1;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        overflow-y: hidden;
+      "
+    >
+      <div style="margin-top: 10px; overflow-y: auto; width: 100%">
+        <div *ngFor="let comment of comments.reverse()">
+          <h4>{{ comment.user_name }}</h4>
+          <p style="padding-left: 5px">
+            {{ comment.comment }}
+          </p>
+        </div>
+      </div>
+    </div>
     <form *ngIf="showCommentForm" (ngSubmit)="onSubmit()" #myForm="ngForm">
       <mat-form-field style="width: 50%" appearance="fill">
         <mat-label>User Name</mat-label>
@@ -62,8 +76,8 @@
       </button>
     </form>
     <button
-      *ngIf="!showCommentForm"
-      mat-raised-button
+      *ngIf="!showCommentForm && commentSnippet"
+      mat-flat-button
       color="accent"
       style="width: 100%; margin-top: 10px"
       (click)="addCommentForm()"

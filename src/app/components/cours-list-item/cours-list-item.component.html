@@ -11,13 +11,13 @@
     <mat-panel-description>
       {{ cours?.description }}
     </mat-panel-description>
-    <div style="display: flex; justify-content: space-between; gap: 5px">
-      <button color="accent" mat-raised-button (click)="openPatchCours($event)">
-        <mat-icon matTooltip="Update Course">update</mat-icon>
+    <div style="display: flex; justify-content: space-between">
+      <button color="accent" mat-flat-button (click)="openPatchCours($event)">
+        <mat-icon matTooltip="Update Course">edit</mat-icon>
       </button>
       <button
         color="accent"
-        mat-raised-button
+        mat-flat-button
         (click)="openCreateSnippetDialog($event)"
       >
         <mat-icon matTooltip="Add Snippet">add</mat-icon>
@@ -26,7 +26,9 @@
   </mat-expansion-panel-header>
 
   <mat-accordion class="course-snippet-accordion">
+    <div *ngIf="snippets.length === 0">No Snippets yet!</div>
     <app-cours-list-item-snippet
+      v-else
       *ngFor="let snippet of snippets"
       [snippet]="snippet"
       (snippetChange)="receiveComments($event)"
