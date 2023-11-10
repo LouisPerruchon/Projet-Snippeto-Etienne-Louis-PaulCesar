@@ -1,43 +1,42 @@
-<mat-accordion (click)="showComments()" class="course-snippet-accordion">
-  <mat-expansion-panel
-    class="course-snippet-panel should-highlight-on-hover"
-    hideToggle
-  >
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <h4>{{ snippet.id }}</h4>
-      </mat-panel-title>
-      <mat-panel-description>
-        <p>{{ snippet.description }}</p>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-grid-list style="margin-bottom: 16px" cols="2" rowHeight="2:1">
-      <mat-grid-tile style="flex-wrap: wrap">
-        <div class="code-container">
-          <div class="code-title">
-            <h4 style="margin-top: 16px; padding-left: 16px">Code</h4>
-          </div>
-          <pre class="code">
+<mat-expansion-panel
+  (opened)="showComments()"
+  class="course-snippet-panel should-highlight-on-hover"
+  hideToggle
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <h4>{{ snippet.id }}</h4>
+    </mat-panel-title>
+    <mat-panel-description>
+      <p>{{ snippet.description }}</p>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-grid-list style="margin-bottom: 16px" cols="2" rowHeight="2:1">
+    <mat-grid-tile style="flex-wrap: wrap">
+      <div class="code-container">
+        <div class="code-title">
+          <h4 style="margin-top: 16px; padding-left: 16px">Code</h4>
+        </div>
+        <pre class="code">
           <code style="width: 100%; height: 100%;"  [lineNumbers]="true" [highlight]="snippet.code"></code>
           </pre>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="code-container">
+        <div class="code-title">
+          <h4 style="margin-top: 16px; padding-left: 16px">Explanation</h4>
         </div>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <div class="code-container">
-          <div class="code-title">
-            <h4 style="margin-top: 16px; padding-left: 16px">Explanation</h4>
-          </div>
-          <pre class="code">
+        <pre class="code">
           <p style="width: 100%; height: 100%;">{{ snippet.explanation }}</p>
           </pre>
-        </div>
-      </mat-grid-tile>
-    </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    <mat-chip-list aria-label="Tags">
-      <mat-chip *ngFor="let tag of snippet.tags" color="accent" selected="">{{
-        tag
-      }}</mat-chip>
-    </mat-chip-list>
-  </mat-expansion-panel>
-</mat-accordion>
+  <mat-chip-list aria-label="Tags">
+    <mat-chip *ngFor="let tag of snippet.tags" color="accent" selected="">{{
+      tag
+    }}</mat-chip>
+  </mat-chip-list>
+</mat-expansion-panel>

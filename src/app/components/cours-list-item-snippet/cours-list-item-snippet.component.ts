@@ -23,5 +23,9 @@ export class CoursListItemSnippetComponent implements OnInit {
     this.snippetChange.emit(this.snippet);
   }
 
+  hideComments() {
+    this.snippetChange.emit(undefined);
+  }
+
   ngOnInit(): void {}
 }

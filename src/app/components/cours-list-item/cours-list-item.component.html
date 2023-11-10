@@ -1,4 +1,5 @@
 <mat-expansion-panel
+  (closed)="hideComments()"
   class="should-highlight-on-hover"
   style="background-color: lightgrey"
   hideToggle
@@ -19,12 +20,12 @@
     </button>
   </mat-expansion-panel-header>
 
-  <div class="cours-snippet-container">
-    <app-cours-list-item-snippet
-      *ngFor="let snippet of snippets"
-      [snippet]="snippet"
-      (snippetChange)="receiveComments($event)"
-      class="course-snippet-parent"
-    ></app-cours-list-item-snippet>
-  </div>
+  <mat-accordion class="course-snippet-accordion">
+      <app-cours-list-item-snippet
+        *ngFor="let snippet of snippets"
+        [snippet]="snippet"
+        (snippetChange)="receiveComments($event)"
+        class="course-snippet-parent"
+      ></app-cours-list-item-snippet>
+  </mat-accordion>
 </mat-expansion-panel>

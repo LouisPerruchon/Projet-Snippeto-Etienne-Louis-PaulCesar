@@ -16,12 +16,11 @@ export class SidebarComponent implements OnInit {
   user_name: string = '';
   form_comment: string = '';
   tags: Set<string> = new Set();
+  showCommentForm: boolean = false;
 
   constructor(private commentService: CommentService) {}
 
-  ngOnInit(): void {
-    this.prepareComment();
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['cours']) {
@@ -30,6 +29,7 @@ export class SidebarComponent implements OnInit {
           return snippet.tags;
         })
       );
+      this.commentSnippet = undefined;
     }
 
     if (changes['commentSnippet']) {
@@ -47,6 +47,10 @@ export class SidebarComponent implements OnInit {
     return comments.filter(
       (comment) => comment.snippet_id === this.commentSnippet?.id
     );
+  }
+
+  addCommentForm() {
+    this.showCommentForm = true;
   }
 
   onSubmit() {
@@ -67,5 +71,8 @@ export class SidebarComponent implements OnInit {
         this.comments = this.filteredComments(data);
       });
     });
+    this.form_comment = '';
+    this.user_name = '';
+    this.showCommentForm = false;
   }
 }

@@ -17,6 +17,7 @@ export class CoursListComponent implements OnInit {
   panelOpenState = false;
   selectedCours: Cours | undefined;
   commentSnippet: Snippet | undefined;
+  tags = []
 
   constructor(private coursService: CoursService, public dialog: MatDialog) {}
 
@@ -24,19 +25,22 @@ export class CoursListComponent implements OnInit {
     this.coursService.getCourses().subscribe((data: Cours[]) => {
       this.courses = data;
     });
+
+   
   }
 
-  receiveComments(commentData: Snippet) {
-    this.commentSnippet = commentData;
+  receiveComments(snippetData: Snippet | undefined) {
+    this.commentSnippet = snippetData;
 
-    console.log(commentData.id);
-    if (!commentData.id) {
-      this.coursService.getCourses().subscribe((data: Cours[]) => {
-        this.courses = data;
-        this.selectedCours = this.courses.find(
-          (cours: Cours) => cours.id === commentData.courseId
-        );
-      });
+    if (snippetData) {
+      if (!snippetData.id) {
+        this.coursService.getCourses().subscribe((data: Cours[]) => {
+          this.courses = data;
+          this.selectedCours = this.courses.find(
+            (cours: Cours) => cours.id === snippetData.courseId
+          );
+        });
+      }
     }
   }
 

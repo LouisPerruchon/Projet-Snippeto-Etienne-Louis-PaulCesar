@@ -40,8 +40,13 @@ export class CoursListItemComponent implements OnInit {
       // Handle the form data here
     });
   }
-  receiveComments(commentData: Snippet) {
-    this.snippetChange.emit(commentData);
+
+  receiveComments(snippetData: Snippet | undefined) {
+    this.snippetChange.emit(snippetData);
+  }
+
+  hideComments() {
+    this.snippetChange.emit(undefined);
   }
 
   prepareSnippets() {

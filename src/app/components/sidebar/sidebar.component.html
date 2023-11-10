@@ -1,7 +1,12 @@
 <mat-card class="side-bar-container">
   <span><h1>Additional Information</h1></span>
   <div
-    style="display: flex; flex-direction: column; flex-grow: 1"
+    style="
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      overflow: hidden;
+    "
     *ngIf="cours"
   >
     <span> <h3>Number of Snippets</h3></span>
@@ -15,7 +20,17 @@
       }}</mat-chip>
     </mat-chip-list>
     <span><h2>Snippet Comments</h2></span>
-    <form *ngIf="commentSnippet" (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+    <div style="margin-top: 10px; overflow-y: scroll; flex-grow: 1">
+      <div *ngFor="let comment of comments">
+        <h4>{{ comment.user_name }}</h4>
+        <p style="padding-left: 5px">
+          {{ comment.comment }}
+        </p>
+      </div>
+    </div>
+
+    <form *ngIf="showCommentForm" (ngSubmit)="onSubmit()" #myForm="ngForm">
       <mat-form-field style="width: 50%" appearance="fill">
         <mat-label>User Name</mat-label>
         <input
@@ -26,7 +41,6 @@
           id="user_name"
         />
       </mat-form-field>
-
       <mat-form-field style="width: 100%" appearance="fill">
         <mat-label>Comment</mat-label>
         <textarea
@@ -47,13 +61,14 @@
         Submit
       </button>
     </form>
-    <div style="margin-top: 10px">
-      <div *ngFor="let comment of comments">
-        <h4>{{ comment.user_name }}</h4>
-        <p style="padding-left: 5px">
-          {{ comment.comment }}
-        </p>
-      </div>
-    </div>
+    <button
+      *ngIf="!showCommentForm"
+      mat-raised-button
+      color="accent"
+      style="width: 100%; margin-top: 10px"
+      (click)="addCommentForm()"
+    >
+      Add Comment
+    </button>
   </div>
 </mat-card>
