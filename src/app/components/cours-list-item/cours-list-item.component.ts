@@ -8,6 +8,8 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { SnippetCreationDialogComponent } from '../snippet-creation-dialog/snippet-creation-dialog.component';
+import { CoursService } from 'src/app/services/cours.service';
+import { CoursCreationDialogComponent } from '../cours-creation-dialog/cours-creation-dialog.component';
 
 @Component({
   selector: 'app-cours-list-item',
@@ -20,6 +22,7 @@ export class CoursListItemComponent implements OnInit {
 
   snippets: Snippet[] = [];
   constructor(
+    private coursService: CoursService,
     private snippetsService: SnippetService,
     public dialog: MatDialog
   ) {}
@@ -74,5 +77,35 @@ export class CoursListItemComponent implements OnInit {
         this.snippets = this.filteredSnippets(data);
       });
     });
+  }
+
+  openPatchCours() {
+    const partialCoursData: Partial<Cours> = {
+      title: this.cours?.title,
+      description: this.cours?.description,
+    };
+    const dialogRef = this.dialog.open(CoursCreationDialogComponent, {
+      width: '50%',
+      data: partialCoursData,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== null) {
+        this.patchCours(result);
+      }
+      // Handle the form data here
+    });
+  }
+
+  patchCours(formData: any) {
+    const dataToPatch: Partial<Cours> = {
+      ...formData,
+    };
+
+    this.coursService
+      .patchCours(this.cours!.id, dataToPatch)
+      .subscribe((data) => {
+        this.cours = data;
+      });
   }
 }

@@ -20,4 +20,12 @@ export class CoursService {
     const response = this.http.post<Cours>(this.apiUrl, data);
     return response;
   }
+
+  patchCours(coursId: string, partialCours: Partial<Cours>) {
+    const patchAPI = this.apiUrl + '/' + coursId;
+    console.log(patchAPI)
+    console.log(partialCours)
+    const response = this.http.patch<Cours>(patchAPI, partialCours);
+    return response;
+  }
 }

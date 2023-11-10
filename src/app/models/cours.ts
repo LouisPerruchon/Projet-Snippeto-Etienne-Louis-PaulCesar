@@ -7,5 +7,3 @@ export interface Cours {
     snippets : Snippet[]
 }
 
-
-  

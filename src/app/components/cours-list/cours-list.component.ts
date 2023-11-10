@@ -17,7 +17,7 @@ export class CoursListComponent implements OnInit {
   panelOpenState = false;
   selectedCours: Cours | undefined;
   commentSnippet: Snippet | undefined;
-  tags = []
+  tags = [];
 
   constructor(private coursService: CoursService, public dialog: MatDialog) {}
 
@@ -25,8 +25,6 @@ export class CoursListComponent implements OnInit {
     this.coursService.getCourses().subscribe((data: Cours[]) => {
       this.courses = data;
     });
-
-   
   }
 
   receiveComments(snippetData: Snippet | undefined) {

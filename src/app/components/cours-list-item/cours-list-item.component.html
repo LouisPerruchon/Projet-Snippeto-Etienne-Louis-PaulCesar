@@ -18,14 +18,17 @@
     >
       Create Snippet
     </button>
+    <button color="accent" mat-raised-button (click)="openPatchCours()">
+      Update Cours
+    </button>
   </mat-expansion-panel-header>
 
   <mat-accordion class="course-snippet-accordion">
-      <app-cours-list-item-snippet
-        *ngFor="let snippet of snippets"
-        [snippet]="snippet"
-        (snippetChange)="receiveComments($event)"
-        class="course-snippet-parent"
-      ></app-cours-list-item-snippet>
+    <app-cours-list-item-snippet
+      *ngFor="let snippet of snippets"
+      [snippet]="snippet"
+      (snippetChange)="receiveComments($event)"
+      class="course-snippet-parent"
+    ></app-cours-list-item-snippet>
   </mat-accordion>
 </mat-expansion-panel>
