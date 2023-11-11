@@ -38,17 +38,8 @@ export class CoursListComponent implements OnInit {
   }
 
   openCreateCoursDialog() {
-    const dialogRef = this.dialog.open(CoursCreationDialogComponent, {
+    this.dialog.open(CoursCreationDialogComponent, {
       width: '50%',
     });
-
-    dialogRef.afterClosed().subscribe((result: Partial<Cours>) => {
-      if (result !== null) {
-        this.submitForm(result);
-      }
-    });
-  }
-  submitForm(formData: Partial<Cours>) {
-    this.coursService.addCours(formData).subscribe();
   }
 }

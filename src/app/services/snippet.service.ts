@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Snippet } from '../models/snippet';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -19,16 +20,19 @@ export class SnippetService {
   public selectedSnippet$: Observable<Snippet | null> =
     this.selectedSnippetSubject.asObservable();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private _snackBar: MatSnackBar) {}
+  
   getSnippets(): Observable<Snippet[]> {
     return this.httpClient.get<Snippet[]>(this.apiUrl).pipe(
       tap((data) => {
         // Update the data in the service
         this.snippetSubject.next(data);
+        this._snackBar.open("Snippets have been refreshed", "OK", {duration:1500});
       }),
       catchError((error) => {
         // Handle errors
         console.error('Error fetching data', error);
+        this._snackBar.open("Error fetching Snippets", "OK", {duration:1500});
         throw error;
       })
     );
@@ -41,6 +45,7 @@ export class SnippetService {
         this.getSnippets().subscribe((updatedSnippets) => {
           // update the observable
           this.snippetSubject.next(updatedSnippets);
+          this._snackBar.open("Snippet has been successfully added", "OK", {duration:1500});
         });
       })
     );
@@ -66,6 +71,7 @@ export class SnippetService {
         this.getSnippets().subscribe((updatedSnippets) => {
           // update the observable
           this.snippetSubject.next(updatedSnippets);
+          this._snackBar.open("Snippet has been successfully updated", "OK", {duration:1500});
         });
       })
     );

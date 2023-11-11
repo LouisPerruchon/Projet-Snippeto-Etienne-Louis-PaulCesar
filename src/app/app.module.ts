@@ -25,6 +25,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { CoursCreationDialogComponent } from './components/cours-creation-dialog/cours-creation-dialog.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     MatChipsModule,
     MatIconModule,
     HighlightModule,
+    MatSnackBarModule,
   ],
   providers: [
     {

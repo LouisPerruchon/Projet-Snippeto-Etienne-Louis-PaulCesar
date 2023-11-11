@@ -2,6 +2,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Cours } from 'src/app/models/cours';
+import { CoursService } from 'src/app/services/cours.service';
 
 @Component({
   selector: 'app-cours-creation-dialog',
@@ -14,6 +15,7 @@ export class CoursCreationDialogComponent implements OnInit {
   dialogTitle: string = '';
 
   constructor(
+    private coursService: CoursService,
     public dialogRef: MatDialogRef<CoursCreationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Partial<Cours>
   ) {}
@@ -35,14 +37,8 @@ export class CoursCreationDialogComponent implements OnInit {
       title: this.title,
       description: this.description,
     };
-    this.dialogRef.close(formData);
+    this.coursService.addCours(formData).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 }
-
-/* constructor(
-    public dialogRef: MatDialogRef<CoursCreationDialogComponent>,
-    private partialCoursData: Partial<Cours> | undefined
-  ) {
-    this.title = this.partialCoursData?.title;
-    this.description = this.partialCoursData?.description;
-  } */

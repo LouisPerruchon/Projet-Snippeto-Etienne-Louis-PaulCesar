@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Comment } from '../models/comment';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +15,23 @@ export class CommentService {
   >([]);
   public comments$: Observable<Comment[]> = this.commentSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
   getComments(): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.apiUrl).pipe(
       tap((data) => {
         // Update the data in the service
         this.commentSubject.next(data);
+        this._snackBar.open('Comments have been refreshed', 'OK', {
+          duration: 1500,
+        });
       }),
       catchError((error) => {
         // Handle errors
         console.error('Error fetching data', error);
+        this._snackBar.open('Error fetching comments', 'OK', {
+          duration: 1500,
+        });
         throw error;
       })
     );
@@ -44,6 +51,9 @@ export class CommentService {
         this.getComments().subscribe((updatedSnippets) => {
           // Assuming this.getSnippets() returns an observable, you can update the observable
           this.commentSubject.next(updatedSnippets);
+          this._snackBar.open('Comment has been successfully added', 'OK', {
+            duration: 1500,
+          });
         });
       })
     );
