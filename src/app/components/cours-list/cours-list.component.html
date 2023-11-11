@@ -10,17 +10,17 @@
     </button>
     <mat-accordion class="cours-list-acccordion" multi="false">
       <app-cours-list-item
-        (click)="setSelectedCours(cours)"
-        *ngFor="let cours of courses"
-        (snippetChange)="receiveComments($event)"
+        (coursChange)="coursChange($event)"
+        *ngFor="let cours of (courses$ | async)?.reverse()"
+        (snippetChange)="snippetChange($event)"
         [cours]="cours"
       ></app-cours-list-item>
     </mat-accordion>
   </div>
   <div class="separator"></div>
   <app-sidebar
-    [cours]="selectedCours"
-    [commentSnippet]="commentSnippet"
+    [selectedCours]="selectedCours"
+    [selectedSnippet]="selectedSnippet"
     class="side-bar"
   ></app-sidebar>
 </div>

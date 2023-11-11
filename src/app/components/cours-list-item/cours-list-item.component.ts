@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { Cours } from 'src/app/models/cours';
 import { Snippet } from 'src/app/models/snippet';
 import { SnippetService } from 'src/app/services/snippet.service';
@@ -10,6 +18,7 @@ import {
 import { SnippetCreationDialogComponent } from '../snippet-creation-dialog/snippet-creation-dialog.component';
 import { CoursService } from 'src/app/services/cours.service';
 import { CoursCreationDialogComponent } from '../cours-creation-dialog/cours-creation-dialog.component';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-cours-list-item',
@@ -19,8 +28,9 @@ import { CoursCreationDialogComponent } from '../cours-creation-dialog/cours-cre
 export class CoursListItemComponent implements OnInit {
   @Input() cours: Cours | undefined;
   @Output() snippetChange = new EventEmitter<Snippet>();
+  @Output() coursChange = new EventEmitter<Cours>();
+  filteredSnippets: Snippet[] = [];
 
-  snippets: Snippet[] = [];
   constructor(
     private coursService: CoursService,
     private snippetsService: SnippetService,
@@ -28,7 +38,9 @@ export class CoursListItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.prepareSnippets();
+    this.snippetsService.getSnippetsById(this.cours!.id).subscribe((data) => {
+      this.filteredSnippets = data.reverse();
+    });
   }
 
   openCreateSnippetDialog(event: Event) {
@@ -44,24 +56,13 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  receiveComments(snippetData: Snippet | undefined) {
+  emitSnippet(snippetData: Snippet | undefined) {
     this.snippetChange.emit(snippetData);
   }
 
-  hideComments() {
+  emitCours() {
+    this.coursChange.emit(this.cours);
     this.snippetChange.emit(undefined);
-  }
-
-  prepareSnippets() {
-    this.snippetsService.getSnippets().subscribe((data: Snippet[]) => {
-      this.snippets = this.filteredSnippets(data);
-    });
-  }
-
-  filteredSnippets(snippets: Snippet[]): Snippet[] {
-    return snippets.filter(
-      (snippet: Snippet) => snippet.courseId === this.cours?.id
-    );
   }
 
   submitForm(formData: Partial<Snippet>) {
@@ -73,9 +74,6 @@ export class CoursListItemComponent implements OnInit {
 
     this.snippetsService.addSnippet(dataToPost).subscribe((data: Snippet) => {
       this.snippetChange.emit(data);
-      this.snippetsService.getSnippets().subscribe((data: Snippet[]) => {
-        this.snippets = this.filteredSnippets(data);
-      });
     });
   }
 

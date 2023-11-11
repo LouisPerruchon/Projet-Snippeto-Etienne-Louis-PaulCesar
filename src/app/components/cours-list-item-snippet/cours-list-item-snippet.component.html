@@ -14,24 +14,23 @@
       <mat-icon matTooltip="Update Snippet">edit</mat-icon>
     </button>
   </mat-expansion-panel-header>
-      <div class="code-container">
-        <div class="code-title">
-          <h4 style="margin-top: 16px; padding-left: 16px">Code</h4>
-        </div>
-        <pre class="code">
+  <div class="code-container">
+    <div class="code-title">
+      <h4 style="margin-top: 16px; padding-left: 16px">Code</h4>
+    </div>
+    <pre class="code">
           <code style="width: 100%; max-height: 500px;"  [lineNumbers]="true" [highlight]="snippet.code"></code>
           </pre>
-      </div>
+  </div>
 
-      <div class="code-container">
-        <div class="code-title">
-          <h4 style="margin-top: 16px; padding-left: 16px">Explanation</h4>
-        </div>
-        <pre class="code">
+  <div class="code-container">
+    <div class="code-title">
+      <h4 style="margin-top: 16px; padding-left: 16px">Explanation</h4>
+    </div>
+    <pre class="code">
           <p style="width: 100%; height: 100%;">{{ snippet.explanation }}</p>
           </pre>
-      </div>
-
+  </div>
 
   <mat-chip-list aria-label="Tags">
     <mat-chip *ngFor="let tag of snippet.tags" color="accent" selected="">{{

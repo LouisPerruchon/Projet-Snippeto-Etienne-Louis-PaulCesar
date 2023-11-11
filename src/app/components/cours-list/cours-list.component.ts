@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Comment } from 'src/app/models/comment';
 import { Cours } from 'src/app/models/cours';
 import { Snippet } from 'src/app/models/snippet';
-import { Tile } from 'src/app/models/tile';
 import { CoursService } from 'src/app/services/cours.service';
 import { CoursCreationDialogComponent } from '../cours-creation-dialog/cours-creation-dialog.component';
+import { SnippetService } from 'src/app/services/snippet.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cours-list',
@@ -13,38 +13,27 @@ import { CoursCreationDialogComponent } from '../cours-creation-dialog/cours-cre
   styleUrls: ['./cours-list.component.scss'],
 })
 export class CoursListComponent implements OnInit {
-  courses: Cours[] = [];
-  panelOpenState = false;
+  panelOpenState: boolean = false;
   selectedCours: Cours | undefined;
-  commentSnippet: Snippet | undefined;
-  tags = [];
+  selectedSnippet: Snippet | undefined;
+  courses$: Observable<Cours[]> = this.coursService.courses$;
 
-  constructor(private coursService: CoursService, public dialog: MatDialog) {}
+  constructor(
+    private coursService: CoursService,
+    private snippetsService: SnippetService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.coursService.getCourses().subscribe((data: Cours[]) => {
-      this.courses = data.reverse();
-    });
+    this.snippetsService.getSnippets().subscribe();
+    this.coursService.getCourses().subscribe();
   }
 
-  receiveComments(snippetData: Snippet | undefined) {
-    this.commentSnippet = snippetData;
-
-    if (snippetData) {
-      if (!snippetData.id) {
-        this.coursService.getCourses().subscribe((data: Cours[]) => {
-          this.courses = data.reverse();
-          this.selectedCours = this.courses.find(
-            (cours: Cours) => cours.id === snippetData.courseId
-          );
-        });
-      }
-    }
+  snippetChange(snippetData: Snippet | undefined) {
+    this.selectedSnippet = snippetData;
   }
 
-  setSelectedCours(selectedCours: Cours) {
-    if (selectedCours.id !== this.commentSnippet?.courseId)
-      this.commentSnippet = undefined;
+  coursChange(selectedCours: Cours | undefined) {
     this.selectedCours = selectedCours;
   }
 
@@ -60,10 +49,6 @@ export class CoursListComponent implements OnInit {
     });
   }
   submitForm(formData: Partial<Cours>) {
-    this.coursService.addCours(formData).subscribe(() => {
-      this.coursService.getCourses().subscribe((data: Cours[]) => {
-        this.courses = data.reverse();
-      });
-    });
+    this.coursService.addCours(formData).subscribe();
   }
 }
