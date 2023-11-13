@@ -27,11 +27,15 @@ export class CoursListItemSnippetComponent implements OnInit {
   ) {}
 
   showComments() {
-    this.snippetChange.emit(this.snippet);
+    setTimeout(() => {
+      this.snippetChange.emit(this.snippet);
+    }, 500);
   }
 
   hideComments() {
-    this.snippetChange.emit(undefined);
+    setTimeout(() => {
+      this.snippetChange.emit(undefined);
+    }, 200);
   }
 
   ngOnInit(): void {}

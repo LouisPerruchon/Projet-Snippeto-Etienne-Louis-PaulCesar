@@ -7,9 +7,11 @@
       height: 100%;
       overflow: hidden;
     "
-    *ngIf="selectedCours && numberOfSnippets > 0"
   >
-    <h2>Number of Snippets : {{ numberOfSnippets }}</h2>
+    <h2>
+      Number of Snippets :
+      {{ selectedCours ? numberOfSnippets : "-" }}
+    </h2>
 
     <h2>Snippet Tags</h2>
     <div style="margin-bottom: 16px">

@@ -61,8 +61,17 @@ export class CoursListItemComponent implements OnInit {
   }
 
   emitCours() {
+    setTimeout(() => {
     this.coursChange.emit(this.cours);
     this.snippetChange.emit(undefined);
+  }, 500);
+  }
+
+  resetSideBar(){
+    setTimeout(() => {
+      this.coursChange.emit(undefined);
+      this.snippetChange.emit(undefined);
+    }, 200);
   }
 
   submitForm(formData: Partial<Snippet>) {
@@ -83,6 +92,7 @@ export class CoursListItemComponent implements OnInit {
     const partialCoursData: Partial<Cours> = {
       title: this.cours?.title,
       description: this.cours?.description,
+      id: this.cours?.id,
     };
     const dialogRef = this.dialog.open(CoursCreationDialogComponent, {
       width: '50%',

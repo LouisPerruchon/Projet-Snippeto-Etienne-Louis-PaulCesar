@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { Cours } from '../models/cours';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -21,13 +21,15 @@ export class CoursService {
       tap((data) => {
         // Update the data in the service
         this.coursSubject.next(data);
-        this._snackBar.open("Courses have been refreshed", "OK", {duration:1500});
+        this._snackBar.open('Courses have been refreshed', 'OK', {
+          duration: 1500,
+        });
       }),
       catchError((error) => {
         // Handle errors
         console.error('Error fetching data', error);
-        this._snackBar.open("Error fetching courses", "OK", {duration:1500});
-        throw error
+        this._snackBar.open('Error fetching courses', 'OK', { duration: 1500 });
+        throw error;
       })
     );
   }
@@ -39,7 +41,9 @@ export class CoursService {
         this.getCourses().subscribe((updatedCourses) => {
           // update the observable
           this.coursSubject.next(updatedCourses);
-          this._snackBar.open("Course has been successfully added.", "OK", {duration:1500});
+          this._snackBar.open('Course has been successfully added.', 'OK', {
+            duration: 1500,
+          });
         });
       })
     );
@@ -54,7 +58,9 @@ export class CoursService {
         this.getCourses().subscribe((updatedCourses) => {
           // update the observable
           this.coursSubject.next(updatedCourses);
-          this._snackBar.open("Course has been successfully updated.", "OK", {duration:1500});
+          this._snackBar.open('Course has been successfully updated.', 'OK', {
+            duration: 1500,
+          });
         });
       })
     );
