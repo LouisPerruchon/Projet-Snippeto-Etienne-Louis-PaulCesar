@@ -33,10 +33,6 @@ export class QcmGeneratorService {
     const filteredSnippets = this.snippets.filter((snippet) =>
       snippet.tags.some((tag) => this.tags.includes(tag))
     );
-    console.log(this.snippets)
-    console.log(this.cours)
-    console.log(this.tags)
-    console.log(filteredSnippets)
     return filteredSnippets
   }
 

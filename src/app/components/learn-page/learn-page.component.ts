@@ -115,7 +115,7 @@ handleTagOptionSelected(option: string): void {
 
   startcourse(){
     this.qcmService.setTags(this.selectedTagsForQcm);
-    this.router.navigate(['/qcm/quizz']);
+    // this.router.navigate(['/qcm/quizz']);
   }
 
 
