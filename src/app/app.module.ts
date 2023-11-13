@@ -26,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { CoursCreationDialogComponent } from './components/cours-creation-dialog/cours-creation-dialog.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CardComponent } from './components/card/card.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -67,6 +68,7 @@ import { CardPageComponent } from './components/card-page/card-page.component';
     MatChipsModule,
     MatIconModule,
     HighlightModule,
+    MatSnackBarModule,
     MatSelectModule,
     MatAutocompleteModule,
     ReactiveFormsModule,

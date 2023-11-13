@@ -7,7 +7,6 @@
   display: flex;
   padding: 10px;
   height: 100%;
-  justify-content: space-between;
 }
 
 .accordion-container {
@@ -30,12 +29,11 @@
   width: 10px;
 }
 .side-bar {
-  flex-grow: 1;display: flex;
-  position: static;
+  width: 30%;
+  display: flex;
 }
 
 .cours-creation-button {
   width: 100%;
   margin-bottom: 10px;
-
 }

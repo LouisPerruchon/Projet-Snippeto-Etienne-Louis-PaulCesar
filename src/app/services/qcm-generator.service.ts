@@ -2,39 +2,57 @@ import { Injectable } from '@angular/core';
 import { Snippet } from '../models/snippet';
 import { SnippetService } from './snippet.service';
 import { Cours } from '../models/cours';
+import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QcmGeneratorService {
+  private apiUrl = 'http://localhost:5000/snippets';
   private cours: Cours[] = [];
   private tags: string[] = [];
   private snippets: Snippet[] = [];
 
-  constructor(snippetService: SnippetService) {
-    snippetService.getSnippets().subscribe((snippets) => {
-      this.snippets = snippets;
-    });
-  }
+  private snippetsToLearnSubject: BehaviorSubject<Snippet[]> =
+    new BehaviorSubject<Snippet[]>([]);
+  public snippetsToLearn$: Observable<Snippet[]> =
+    this.snippetsToLearnSubject.asObservable();
 
-  setCourses(cours: Cours[]): void {
-    this.cours = cours;
-  }
+  constructor(private httpClient: HttpClient, snippetService: SnippetService) {}
 
-  setTags(tags: string[]): void {
-    this.tags = tags;
-  }
-
-  getSnippetsFromCourses() : Snippet[] {
-    return this.cours.flatMap(cour => cour.snippets);
-  }
-
-  getSnippetsFromTags() : Snippet[] {
-    const filteredSnippets = this.snippets.filter((snippet) =>
-      snippet.tags.some((tag) => this.tags.includes(tag))
+  getSnippetsToLearn(): Observable<Snippet[]> {
+    return this.httpClient.get<Snippet[]>(this.apiUrl).pipe(
+      tap((data) => {
+        this.snippetsToLearnSubject.next([]);
+        this.snippets = data;
+      })
     );
-    return filteredSnippets
   }
 
+  getSnippetsToLearnByCourses(): Observable<Snippet[]> {
+    const result = this.snippetsToLearn$.pipe(
+      map((data) => {
+        return data.filter((item: Snippet) =>
+          this.cours.map((item) => item.id).includes(item.courseId)
+        );
+      })
+    );
+    return result;
+  }
 
+  getLearningSnippetsFromTags(tags: string[]): void {
+    const result = this.snippets.filter((item: Snippet) => {
+      return tags.some((tag) => item.tags.includes(tag));
+    });
+    this.snippetsToLearnSubject.next(result);
+  }
+
+  getLearningSnippetsFromCourses(courses: Cours[]): void {
+    const result = this.snippets.filter((item: Snippet) =>
+      courses.map((item) => item.id).includes(item.courseId)
+    );
+
+    this.snippetsToLearnSubject.next(result);
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Snippet } from 'src/app/models/snippet';
 import { QcmGeneratorService } from 'src/app/services/qcm-generator.service';
 
@@ -8,11 +9,11 @@ import { QcmGeneratorService } from 'src/app/services/qcm-generator.service';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  snippets: Snippet[] = [];
-  constructor(private qcmGenerator: QcmGeneratorService) {
-    this.snippets = qcmGenerator.getSnippetsFromTags();
-    console.log(this.snippets)
-    }
+  snippets: Observable<Snippet[]> | undefined;
+  snippetsToLearn$ = this.qcmGenerator.snippetsToLearn$;
+  constructor(private qcmGenerator: QcmGeneratorService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.qcmGenerator.getSnippetsToLearn().subscribe();
+  }
 }

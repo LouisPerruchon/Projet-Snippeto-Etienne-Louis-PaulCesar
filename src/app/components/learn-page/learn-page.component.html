@@ -1,103 +1,134 @@
 <mat-tab-group>
-    <!-- Tags -->
-    <mat-tab label="Tags">
-        <div class="select-and-research">
-            <mat-card>
-                <!-- List of Tags -->
-                <div class="select-section">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>Tags</mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <mat-chip-list>
-                                <mat-chip *ngFor="let tag of tags" [class.selected]="isSelectedTag(tag)"
-                                    (click)="toggleSelectedTag(tag)">
-                                    {{ tag }}
-                                </mat-chip>
-                            </mat-chip-list>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-
-                <!-- Research by Tag -->
-                <div class="research-section">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-panel-title>Research by tag</mat-panel-title>
-                        </mat-card-header>
-                        <mat-card-actions>
-                            <mat-form-field>
-                                <mat-autocomplete #auto="matAutocomplete"
-                                    (optionSelected)="handleTagOptionSelected($event.option.value)">
-                                    <mat-option [value]="option" *ngFor="let option of filteredTagsOptions | async"
-                                        [value]="option">
-                                        {{ option }}
-                                    </mat-option>
-                                </mat-autocomplete>
-                                <input type="text" matInput [formControl]="userInput" matInput [matAutocomplete]="auto">
-                            </mat-form-field>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
-            </mat-card>
+  <!-- Tags -->
+  <mat-tab label="Tags">
+    <div class="select-and-research">
+      <mat-card>
+        <!-- List of Tags -->
+        <div class="select-section">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Tags</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-chip-list>
+                <mat-chip
+                  *ngFor="let tag of tags"
+                  [class.selected]="isSelectedTag(tag)"
+                  (click)="toggleSelectedTag(tag)"
+                >
+                  {{ tag }}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-card-content>
+          </mat-card>
         </div>
-    </mat-tab>
 
-    <mat-tab label="Courses">
-        <!-- Courses -->
-        <div class="select-and-research">
-            <mat-card>
-                <!-- List of Courses -->
-                <div class="select-section">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>Courses</mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <mat-chip-list>
-                                <mat-chip *ngFor="let cour of cours" [class.selected]="isSelectedCours(cour.title)"
-                                    (click)="toggleSelectedCours(cour.title)">
-                                    {{ cour.title }}
-                                </mat-chip>
-                            </mat-chip-list>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-
-                <!-- Research by course-Title -->
-                <div class="research-section">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-panel-title>Research by Courses</mat-panel-title>
-                        </mat-card-header>
-                        <mat-card-actions>
-                            <mat-form-field>
-                                <mat-autocomplete #auto1="matAutocomplete"
-                                    (optionSelected)="handleCoursOptionSelected($event.option.value)">
-                                    <mat-option [value]="option" *ngFor="let option of filteredCoursOptions | async"
-                                        [value]="option">
-                                        {{ option }}
-                                    </mat-option>
-                                </mat-autocomplete>
-                                <input type="text" matInput [formControl]="userInput" matInput
-                                    [matAutocomplete]="auto1">
-                            </mat-form-field>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
-            </mat-card>
+        <!-- Research by Tag -->
+        <div class="research-section">
+          <mat-card>
+            <mat-card-header>
+              <mat-panel-title>Research by tag</mat-panel-title>
+            </mat-card-header>
+            <mat-card-actions>
+              <mat-form-field>
+                <mat-autocomplete
+                  #auto="matAutocomplete"
+                  (optionSelected)="
+                    handleTagOptionSelected($event.option.value)
+                  "
+                >
+                  <mat-option
+                    [value]="option"
+                    *ngFor="let option of filteredTagsOptions | async"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-autocomplete>
+                <input
+                  type="text"
+                  matInput
+                  [formControl]="userInput"
+                  matInput
+                  [matAutocomplete]="auto"
+                />
+              </mat-form-field>
+            </mat-card-actions>
+          </mat-card>
         </div>
-    </mat-tab>
+      </mat-card>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Courses">
+    <!-- Courses -->
+    <div class="select-and-research">
+      <mat-card>
+        <!-- List of Courses -->
+        <div class="select-section">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Courses</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-chip-list>
+                <mat-chip
+                  *ngFor="let cour of cours"
+                  [class.selected]="isSelectedCours(cour)"
+                  (click)="toggleSelectedCours(cour)"
+                >
+                  {{ cour.title }}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Research by course-Title -->
+        <div class="research-section">
+          <mat-card>
+            <mat-card-header>
+              <mat-panel-title>Research by Courses</mat-panel-title>
+            </mat-card-header>
+            <mat-card-actions>
+              <mat-form-field>
+                <mat-autocomplete
+                  #auto1="matAutocomplete"
+                  (optionSelected)="
+                    handleCoursOptionSelected($event.option.value)
+                  "
+                >
+                  <mat-option
+                    [value]="option"
+                    *ngFor="let option of filteredCoursOptions | async"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-autocomplete>
+                <input
+                  type="text"
+                  matInput
+                  [formControl]="userInput"
+                  matInput
+                  [matAutocomplete]="auto1"
+                />
+              </mat-form-field>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </mat-card>
+    </div>
+  </mat-tab>
 </mat-tab-group>
 
 <div class="qcm-generation-button-container">
-    <mat-progress-spinner *ngIf="isQcmGenerationSubmited" mode="determinate" value="40">
-    </mat-progress-spinner>
-</div>
-
-<div>
-    <button mat-raised-button color="primary" (click)="startcourse()">Start</button>
+  <mat-progress-spinner
+    *ngIf="isQcmGenerationSubmited"
+    mode="determinate"
+    value="40"
+  >
+  </mat-progress-spinner>
 </div>
 
 <app-card></app-card>

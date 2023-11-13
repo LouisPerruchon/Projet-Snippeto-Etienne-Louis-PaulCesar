@@ -23,15 +23,17 @@ export class LearnPageComponent implements OnInit {
     'angular',
   ];
   selectedTagsForQcm: string[] = [];
-  selectedCoursForQcm: string[] = [];
+  selectedCoursForQcm: Cours[] = [];
   userInput = new FormControl();
   filteredTagsOptions!: Observable<string[]>;
-  filteredCoursOptions!: Observable<string[]>;
-  isQcmGenerationSubmited : boolean =false;
+  filteredCoursOptions!: Observable<Cours[]>;
+  isQcmGenerationSubmited: boolean = false;
 
-  constructor(private coursService: CoursService, private qcmService: QcmGeneratorService,private router: Router) {
-   
-  }
+  constructor(
+    private coursService: CoursService,
+    private qcmService: QcmGeneratorService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.coursService.getCourses().subscribe((cours) => {
@@ -40,84 +42,71 @@ export class LearnPageComponent implements OnInit {
         startWith(''),
         map((value) => this.filterTags(value))
       );
-  
       this.filteredCoursOptions = this.userInput.valueChanges.pipe(
         startWith(''),
         map((value) => this.filterCours(value))
       );
     });
-
-    
-    
-
-    console.log(this.filteredCoursOptions)
-
-  
   }
-  
+
   // Tags
-isSelectedTag(tag: string): boolean {
-  return this.selectedTagsForQcm.includes(tag);
-}
-
-toggleSelectedTag(tag: string): void {
-  const index = this.selectedTagsForQcm.indexOf(tag);
-
-  if (index !== -1) {
-    this.selectedTagsForQcm.splice(index, 1);
-  } else { 
-    this.selectedTagsForQcm.push(tag);
+  isSelectedTag(tag: string): boolean {
+    return this.selectedTagsForQcm.includes(tag);
   }
-}
 
-filterTags(value: string): string[] {
-  const filterValue = value.toLowerCase();
-  const test=  this.tags.filter((tag) => tag.toLowerCase().includes(filterValue));
+  toggleSelectedTag(tag: string): void {
+    const index = this.selectedTagsForQcm.indexOf(tag);
 
-  return test
-}
+    if (index !== -1) {
+      this.selectedTagsForQcm.splice(index, 1);
+    } else {
+      this.selectedTagsForQcm.push(tag);
+    }
+    this.qcmService.getLearningSnippetsFromTags(this.selectedTagsForQcm);
+  }
 
-handleTagOptionSelected(option: string): void {
-  this.selectedTagsForQcm.push(option);
-  this.userInput.setValue('');
-  console.log(this.filteredTagsOptions,this.filteredCoursOptions)
-  console.log(this.selectedTagsForQcm,this.selectedCoursForQcm)
-}
+  filterTags(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    const test = this.tags.filter((tag) =>
+      tag.toLowerCase().includes(filterValue)
+    );
+    return test;
+  }
+
+  handleTagOptionSelected(option: string): void {
+    this.selectedTagsForQcm.push(option);
+    this.userInput.setValue('');
+    this.qcmService.getLearningSnippetsFromTags(this.selectedTagsForQcm);
+  }
 
   // Cours
-  isSelectedCours(courTitle: string): boolean {
-    return this.selectedCoursForQcm.includes(courTitle);
+  isSelectedCours(selectedCours: Cours): boolean {
+    return this.selectedCoursForQcm.includes(selectedCours);
   }
 
-  toggleSelectedCours(courTitle: string): void {
-    const index = this.selectedCoursForQcm.indexOf(courTitle);
+  toggleSelectedCours(seletedCours: Cours): void {
+    const index = this.selectedCoursForQcm.indexOf(seletedCours);
     if (index !== -1) {
       this.selectedCoursForQcm.splice(index, 1);
     } else {
-      this.selectedCoursForQcm.push(courTitle);
+      this.selectedCoursForQcm.push(seletedCours);
     }
+    this.qcmService.getLearningSnippetsFromCourses(this.selectedCoursForQcm);
   }
 
-  filterCours(value: string): string[] {
+  filterCours(value: string): Cours[] {
     const filterValue = value.toLowerCase();
-    const test = this.cours
-      .map((c) => c.title)
-      .filter((courTitle) => courTitle.toLowerCase().includes(filterValue));
-    
-      return test
+    const test = this.cours.filter((cour) =>
+      cour.title.toLowerCase().includes(filterValue)
+    );
 
+    return test;
   }
 
-  handleCoursOptionSelected(option: string): void {
-    this.selectedCoursForQcm.push(option); 
+  handleCoursOptionSelected(option: Cours): void {
+    this.selectedCoursForQcm.push(option);
     this.userInput.setValue('');
   }
-
-  startcourse(){
-    this.qcmService.setTags(this.selectedTagsForQcm);
-    // this.router.navigate(['/qcm/quizz']);
-  }
-
 
   //https://material.angular.io/components/ripple/examples //mettre ça sur les cards
   //https://material.angular.io/components/chips/overview // remplacer ems chips
