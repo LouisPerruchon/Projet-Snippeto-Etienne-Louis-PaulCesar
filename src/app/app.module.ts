@@ -7,7 +7,7 @@ import { CoursListComponent } from './components/cours-list/cours-list.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { CoursListItemComponent } from './components/cours-list-item/cours-list-item.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -23,9 +23,16 @@ import { SnippetCreationDialogComponent } from './components/snippet-creation-di
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { CoursCreationDialogComponent } from './components/cours-creation-dialog/cours-creation-dialog.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CardComponent } from './components/card/card.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { LearnPageComponent } from './components/learn-page/learn-page.component';
+import { CardPageComponent } from './components/card-page/card-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +44,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SidebarComponent,
     SnippetCreationDialogComponent,
     CoursCreationDialogComponent,
+    CardComponent,
+    LearnPageComponent,
+    CardPageComponent
   ],
 
   imports: [
@@ -59,6 +69,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     HighlightModule,
     MatSnackBarModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
   ],
   providers: [
     {
