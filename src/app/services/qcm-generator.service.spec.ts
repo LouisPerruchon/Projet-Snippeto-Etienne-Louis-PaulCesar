@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { QcmGeneratorService } from './qcm-generator.service';
 
-import { QcmGeneratorService } from './QcmGeneratorService';
 
 describe('QcmGeneratorService', () => {
   let service: QcmGeneratorService;
