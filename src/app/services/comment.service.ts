@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class CommentService {
-  private apiUrl = 'http://localhost:5555/comments';
+  private apiUrl = 'http://localhost:5000/comments';
 
   private commentSubject: BehaviorSubject<Comment[]> = new BehaviorSubject<
     Comment[]

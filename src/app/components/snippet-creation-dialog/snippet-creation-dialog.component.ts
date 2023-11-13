@@ -25,7 +25,6 @@ export class SnippetCreationDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
     if (this.data) {
       this.code = this.data.code || '';
       this.description = this.data.description || '';

@@ -39,7 +39,6 @@ export class CoursCreationDialogComponent implements OnInit {
     };
 
     if (this.dialogTitle === 'Update Cours') {
-      console.log(this.data.id)
       this.coursService.patchCours(this.data.id!, formData).subscribe(() => {
         this.dialogRef.close();
       });
