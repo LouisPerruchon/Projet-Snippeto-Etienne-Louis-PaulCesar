@@ -1,11 +1,23 @@
 <mat-toolbar class="nav-bar" color="primary">
   <div class="nav-container">
-    <span class="nav-title">Code Snippets</span>
-    <div>
-      <button class="header-button"  routerLink="/courses">
+    <div [routerLink]="['/courses']" class="nav-title">Code Snippets</div>
+    <div class="button-container">
+      <button
+        class="header-button"
+        color="accent"
+        mat-raised-button
+        [routerLink]="['/qcm/creator']"
+      >
+        Learning
+      </button>
+      <button
+        class="header-button"
+        color="accent"
+        mat-raised-button
+        [routerLink]="['/courses']"
+      >
         Cours List
       </button>
     </div>
   </div>
 </mat-toolbar>
-
