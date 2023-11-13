@@ -1,59 +1,110 @@
 <mat-card class="side-bar-container">
-  <span><h1>Additional Information</h1></span>
+  <h1>Additional Information</h1>
   <div
-    style="display: flex; flex-direction: column; flex-grow: 1"
-    *ngIf="cours"
+    style="
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    "
   >
-    <span> <h3>Number of Snippets</h3></span>
-    <div>TODO: X</div>
-    <span> <h2>Time periode</h2></span>
-    <div>TODO: earliest snippet - last snippet</div>
-    <span><h3>Snippet Tags</h3></span>
-    <mat-chip-list aria-label="Tags">
-      <mat-chip *ngFor="let tag of tags" color="accent" selected="">{{
-        tag
-      }}</mat-chip>
-    </mat-chip-list>
-    <span><h2>Snippet Comments</h2></span>
-    <form *ngIf="commentSnippet" (ngSubmit)="onSubmit()" #myForm="ngForm">
-      <mat-form-field style="width: 50%" appearance="fill">
-        <mat-label>User Name</mat-label>
-        <input
-          matInput
-          [(ngModel)]="user_name"
-          required
-          name="user_name"
-          id="user_name"
-        />
-      </mat-form-field>
+    <h2>
+      Number of Snippets :
+      {{ selectedCours ? numberOfSnippets : "-" }}
+    </h2>
 
-      <mat-form-field style="width: 100%" appearance="fill">
-        <mat-label>Comment</mat-label>
-        <textarea
-          matInput
-          [(ngModel)]="form_comment"
-          required
-          name="form_comment"
-          id="form_comment"
-        ></textarea>
-      </mat-form-field>
-
-      <button
-        mat-raised-button
-        color="accent"
-        type="submit"
-        style="width: 100%"
-      >
-        Submit
-      </button>
-    </form>
-    <div style="margin-top: 10px">
-      <div *ngFor="let comment of comments">
-        <h4>{{ comment.user_name }}</h4>
-        <p style="padding-left: 5px">
-          {{ comment.comment }}
-        </p>
-      </div>
+    <h2>Snippet Tags</h2>
+    <div style="margin-bottom: 16px">
+      <mat-chip-list aria-label="Tags">
+        <mat-chip *ngFor="let tag of tags" color="accent" selected="">{{
+          tag
+        }}</mat-chip>
+      </mat-chip-list>
     </div>
+    <h2>Snippet Comments</h2>
+    <div *ngIf="!selectedSnippet">
+      Please select a snippet to get available comments.
+    </div>
+    <div *ngIf="comments.length === 0 && selectedSnippet">
+      No comments on this Snippet.
+    </div>
+
+    <div
+      *ngIf="!showCommentForm"
+      style="
+        flex-grow: 1;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        overflow-y: hidden;
+      "
+    >
+      <ul class="comment-container">
+        <li *ngFor="let comment of comments.reverse()">
+          <div style="display: flex">
+            <h3 style="flex-grow: 1">
+              {{ comment.user_name == "" ? "Anonymous " : comment.user_name }}
+            </h3>
+            <h5 style="padding-right: 5px">{{ comment.date }}</h5>
+          </div>
+          <p style="padding-left: 5px">
+            {{ comment.comment }}
+          </p>
+        </li>
+      </ul>
+    </div>
+    <mat-card *ngIf="showCommentForm" style="flex-grow: 1; display: flex">
+      <form
+        (ngSubmit)="onSubmit()"
+        style="width: 100%; display: flex; flex-direction: column; flex-grow: 1"
+        #myForm="ngForm"
+      >
+        <mat-form-field style="width: 50%" appearance="fill">
+          <mat-label>User Name</mat-label>
+          <input
+            matInput
+            [(ngModel)]="user_name"
+            required
+            name="user_name"
+            id="user_name"
+          />
+        </mat-form-field>
+        <mat-form-field style="width: 100%; flex-grow: 1" appearance="fill">
+          <mat-label>Comment</mat-label>
+          <textarea
+            matInput
+            style="height: 200px"
+            [(ngModel)]="form_comment"
+            required
+            name="form_comment"
+            id="form_comment"
+          ></textarea>
+        </mat-form-field>
+        <mat-card-actions>
+          <div class="button-container">
+            <button
+              type="reset"
+              mat-raised-button
+              color="primary"
+              (click)="cancleCommentForm()"
+            >
+              Cancle
+            </button>
+            <button type="submit" mat-raised-button color="accent">
+              Submit
+            </button>
+          </div>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+    <button
+      *ngIf="!showCommentForm && selectedSnippet"
+      mat-flat-button
+      color="accent"
+      style="width: 100%; margin-top: 10px"
+      (click)="addCommentForm()"
+    >
+      Add Comment
+    </button>
   </div>
 </mat-card>

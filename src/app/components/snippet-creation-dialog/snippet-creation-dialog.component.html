@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add Snippet</h2>
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
 <div mat-dialog-content>
   <form (ngSubmit)="onSubmit()">
     <mat-form-field style="width: 100%" appearance="fill">
@@ -15,7 +15,11 @@
     </mat-form-field>
     <mat-form-field style="width: 100%" appearance="fill">
       <mat-label>Explanation</mat-label>
-      <input matInput [(ngModel)]="explanation" name="explanation" />
+      <textarea
+        matInput
+        [(ngModel)]="explanation"
+        name="explanation"
+      ></textarea>
     </mat-form-field>
     <mat-form-field style="width: 100%" appearance="fill">
       <mat-label>Tags</mat-label>
@@ -37,8 +41,10 @@
     </mat-form-field>
 
     <div class="button-container">
-      <button type="reset" color="accent" (click)="cancle()">Cancle</button>
-      <button type="submit" mat-raised-button color="primary">Submit</button>
+      <button type="reset" mat-raised-button color="primary" (click)="cancle()">
+        Cancle
+      </button>
+      <button type="submit" mat-raised-button color="accent">Submit</button>
     </div>
   </form>
 </div>

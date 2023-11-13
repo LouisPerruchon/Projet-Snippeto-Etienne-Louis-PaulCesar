@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Snippet } from 'src/app/models/snippet';
 
 @Component({
   selector: 'app-snippet-creation-dialog',
@@ -14,11 +15,27 @@ export class SnippetCreationDialogComponent implements OnInit {
   description: string = '';
   explanation: string = '';
   tags: string[] = [];
+  dialogTitle: string = '';
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-  constructor(public dialogRef: MatDialogRef<SnippetCreationDialogComponent>) {}
-  ngOnInit(): void {}
+  constructor(
+    public dialogRef: MatDialogRef<SnippetCreationDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Partial<Snippet>
+  ) {}
+
+  ngOnInit(): void {
+    if (this.data) {
+      this.code = this.data.code || '';
+      this.description = this.data.description || '';
+      this.explanation = this.data.explanation || '';
+      this.tags = this.data.tags || [];
+      this.dialogTitle = 'Update Snippet';
+    } else {
+      this.dialogTitle = 'Add new Snippet';
+    }
+  }
+
   cancle() {
     this.dialogRef.close(null);
   }
@@ -43,12 +60,12 @@ export class SnippetCreationDialogComponent implements OnInit {
     }
   }
   onSubmit(): void {
-    const formData = {
+    const formData: Partial<Snippet> = {
       code: this.code,
       id: this.id,
       description: this.description,
       explanation: this.explanation,
-      tags: this.tags, // Assuming tags are comma-separated
+      tags: this.tags,
     };
     this.dialogRef.close(formData);
   }
