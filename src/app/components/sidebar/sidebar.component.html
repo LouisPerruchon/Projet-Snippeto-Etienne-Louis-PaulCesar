@@ -52,28 +52,32 @@
         <form
           class="create-comment-form"
           (ngSubmit)="onSubmit()"
-          #myForm="ngForm"
+          [formGroup]="form"
         >
-          <mat-form-field class="w-50" appearance="fill">
+          <mat-form-field class="w-100" appearance="fill">
             <mat-label>User Name</mat-label>
             <input
               matInput
               [(ngModel)]="user_name"
-              required
               name="user_name"
-              id="user_name"
+              formControlName="user_name"
             />
+            <mat-error *ngIf="form.get('user_name')?.hasError('maxlength')"
+              >Username is too long</mat-error
+            >
           </mat-form-field>
-          <mat-form-field style="width: 100%; flex-grow: 1" appearance="fill">
+          <mat-form-field class="w-100"  appearance="fill">
             <mat-label>Comment</mat-label>
             <textarea
               matInput
-              style="height: 200px"
-              [(ngModel)]="form_comment"
-              required
+              style="height:20vh"
+              [(ngModel)]="comment"
               name="form_comment"
-              id="form_comment"
+              formControlName="comment"
             ></textarea>
+            <mat-error *ngIf="form.get('comment')?.hasError('required')"
+              >Comment is required</mat-error
+            >
           </mat-form-field>
           <div class="button-container">
             <button
@@ -84,7 +88,12 @@
             >
               Cancle
             </button>
-            <button type="submit" mat-raised-button color="accent">
+            <button
+              type="submit"
+              mat-raised-button
+              color="accent"
+              [disabled]="form.invalid"
+            >
               Submit
             </button>
           </div>

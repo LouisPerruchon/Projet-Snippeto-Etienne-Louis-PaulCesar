@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Comment } from 'src/app/models/comment';
 import { Cours } from 'src/app/models/cours';
 import { Snippet } from 'src/app/models/snippet';
@@ -17,13 +18,20 @@ export class SidebarComponent implements OnInit {
   tags: Set<string> | undefined;
   numberOfSnippets: number = 0;
   user_name: string = '';
-  form_comment: string = '';
+  comment: string = '';
   showCommentForm: boolean = false;
+  form: FormGroup;
 
   constructor(
     private commentService: CommentService,
-    private snippetsService: SnippetService
-  ) {}
+    private snippetsService: SnippetService,
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      comment: ['', [Validators.required, Validators.maxLength(100)]],
+      user_name: ['', [Validators.maxLength(15)]],
+    });
+  }
 
   ngOnInit(): void {
     this.commentService.getComments().subscribe();
@@ -73,19 +81,19 @@ export class SidebarComponent implements OnInit {
     const dataToTransmit: Comment = {
       id: '',
       user_name: this.user_name,
-      comment: this.form_comment,
+      comment: this.comment,
       date: formattedDate,
       snippet_id: this.selectedSnippet!.id,
     };
     this.commentService.addComment(dataToTransmit).subscribe();
 
-    this.form_comment = '';
+    this.comment = '';
     this.user_name = '';
     this.showCommentForm = false;
   }
 
   cancleCommentForm() {
-    this.form_comment = '';
+    this.comment = '';
     this.user_name = '';
     this.showCommentForm = false;
   }

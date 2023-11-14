@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Snippet } from 'src/app/models/snippet';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-snippet-creation-dialog',
@@ -17,12 +18,20 @@ export class SnippetCreationDialogComponent implements OnInit {
   tags: string[] = [];
   dialogTitle: string = '';
   addOnBlur = true;
+  form: FormGroup;
   readonly separatorKeysCodes = [SPACE, COMMA] as const;
 
   constructor(
     public dialogRef: MatDialogRef<SnippetCreationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Partial<Snippet>
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: Partial<Snippet>,
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      description: ['', Validators.required],
+      code: ['', Validators.required],
+      explanation: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     if (this.data) {
