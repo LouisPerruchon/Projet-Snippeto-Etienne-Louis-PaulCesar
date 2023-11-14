@@ -51,6 +51,13 @@ export class LearnPageComponent implements OnInit {
       map((value: string) => this.filterCours(value))
     );
   }
+  resetSelectedSnippets(isLearningFinished: boolean) {
+    console.log(isLearningFinished)
+    if (isLearningFinished) {
+      this.selectedCoursForQcm = [];
+      this.selectedTagsForQcm = [];
+    }
+  }
 
   isSelectedTag(tag: string): boolean {
     return this.selectedTagsForQcm.includes(tag);

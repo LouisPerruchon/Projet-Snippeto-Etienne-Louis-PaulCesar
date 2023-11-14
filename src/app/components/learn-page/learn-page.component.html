@@ -104,5 +104,5 @@
     </mat-tab-group>
   </mat-card>
 
-  <app-card class="quizz-container"> </app-card>
+  <app-card (isLearningOver)="resetSelectedSnippets($event)" class="quizz-container"> </app-card>
 </div>
