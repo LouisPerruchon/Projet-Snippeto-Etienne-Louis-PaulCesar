@@ -54,7 +54,7 @@
           (ngSubmit)="onSubmit()"
           #myForm="ngForm"
         >
-          <mat-form-field style="width: 50%" appearance="fill">
+          <mat-form-field class="w-50" appearance="fill">
             <mat-label>User Name</mat-label>
             <input
               matInput
@@ -96,7 +96,7 @@
       *ngIf="!showCommentForm && selectedSnippet"
       mat-flat-button
       color="accent"
-      style="width: 100%; margin-top: 10px"
+      class="w-100 margin-top-10"
       (click)="addCommentForm()"
     >
       Add Comment

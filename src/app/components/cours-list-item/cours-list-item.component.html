@@ -2,17 +2,17 @@
   (opened)="emitCours()"
   (closed)="resetSideBar()"
   class="should-highlight-on-hover"
-  style="background-color: lightgrey"
   hideToggle
 >
   <mat-expansion-panel-header class="cours-list-item-panel">
-    <mat-panel-title>
-      <h2>{{ cours?.title }}</h2>
+    <mat-panel-title class="panel-title">
+     {{ cours?.title }}
     </mat-panel-title>
-    <mat-panel-description>
-      <h3>{{ cours?.description }}</h3>
+
+    <mat-panel-description class="panel-description break-line">
+      {{ cours?.description }}
     </mat-panel-description>
-    <div style="display: flex; justify-content: space-between; gap: 5px">
+    <div class="button-container">
       <button color="accent" mat-flat-button (click)="openPatchCours($event)">
         <mat-icon matTooltip="Update Course">edit</mat-icon>
       </button>
@@ -25,7 +25,7 @@
       </button>
     </div>
   </mat-expansion-panel-header>
-  <div style="text-align: center" *ngIf="filteredSnippets.length === 0">
+  <div class="align-text-center" *ngIf="filteredSnippets.length === 0">
     <h3>No Snippets yet</h3>
   </div>
   <mat-accordion class="course-snippet-accordion">

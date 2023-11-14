@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
 import { Snippet } from 'src/app/models/snippet';
 
 @Component({
@@ -17,7 +17,7 @@ export class SnippetCreationDialogComponent implements OnInit {
   tags: string[] = [];
   dialogTitle: string = '';
   addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  readonly separatorKeysCodes = [SPACE, COMMA] as const;
 
   constructor(
     public dialogRef: MatDialogRef<SnippetCreationDialogComponent>,

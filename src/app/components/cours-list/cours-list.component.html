@@ -1,5 +1,5 @@
 <div class="cours-list-container">
-  <div class="accordion-container">
+  <mat-card class="accordion-container">
     <button
       class="cours-creation-button"
       mat-raised-button
@@ -8,6 +8,7 @@
     >
       Create Cours
     </button>
+
     <mat-accordion class="cours-list-acccordion" multi="false">
       <app-cours-list-item
         (coursChange)="coursChange($event)"
@@ -16,7 +17,8 @@
         [cours]="cours"
       ></app-cours-list-item>
     </mat-accordion>
-  </div>
+  </mat-card>
+
   <div class="separator"></div>
   <app-sidebar
     [selectedCours]="selectedCours"
