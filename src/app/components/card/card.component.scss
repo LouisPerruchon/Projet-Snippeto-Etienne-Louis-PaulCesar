@@ -1,7 +1,10 @@
 .card-container {
-    position: relative;
+    position: absolute;
     height: 500px;
-    width: 300px;
+    mat-card{
+        margin-left: 300px;    
+        width: 300px;
+    }
 }
 
 .card-container:hover .card {
