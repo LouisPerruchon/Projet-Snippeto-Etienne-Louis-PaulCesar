@@ -19,7 +19,7 @@ import { SnippetService } from 'src/app/services/snippet.service';
 export class CoursListItemSnippetComponent implements OnInit {
   @Input()
   snippet!: Snippet;
-  @Output() snippetChange = new EventEmitter<Snippet>();
+  @Output() snippetChange: EventEmitter<Snippet> = new EventEmitter<Snippet>();
 
   constructor(
     private snippetsService: SnippetService,
