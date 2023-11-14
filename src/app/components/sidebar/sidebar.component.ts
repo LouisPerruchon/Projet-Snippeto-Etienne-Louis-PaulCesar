@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-
 import { Comment } from 'src/app/models/comment';
 import { Cours } from 'src/app/models/cours';
 import { Snippet } from 'src/app/models/snippet';
@@ -17,10 +16,8 @@ export class SidebarComponent implements OnInit {
   comments: Comment[] = [];
   tags: Set<string> | undefined;
   numberOfSnippets: number = 0;
-
   user_name: string = '';
   form_comment: string = '';
-
   showCommentForm: boolean = false;
 
   constructor(
@@ -80,7 +77,6 @@ export class SidebarComponent implements OnInit {
       date: formattedDate,
       snippet_id: this.selectedSnippet!.id,
     };
-    // Transmit the data as required
     this.commentService.addComment(dataToTransmit).subscribe();
 
     this.form_comment = '';

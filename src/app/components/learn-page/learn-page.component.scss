@@ -1,6 +1,6 @@
 .learning-section-container {
   display: flex;
-  padding: 10px;
+
   height: 100%;
 }
 
@@ -13,14 +13,11 @@
 mat-tab-group {
   width: 100%;
 }
-.select-section {
-  padding: 10px;
-  mat-chip {
-    padding: 20px;
-  }
-}
 
-.research-section {
+mat-chip {
+  padding: 20px;
+}
+.select-section {
   padding: 10px;
 }
 
@@ -41,10 +38,10 @@ div .mat-tab-labels {
   background-color: rebeccapurple;
 }
 
-.mat-tab-label{
-  flex-grow: 1 !important
+.mat-tab-label {
+  flex-grow: 1 !important;
 }
 
-mat-card-title{
+mat-card-title {
   padding-bottom: 10px;
 }
