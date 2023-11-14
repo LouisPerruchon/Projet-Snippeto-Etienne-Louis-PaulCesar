@@ -1,5 +1,4 @@
-
-.card-container {
+.learning-section-container {
   display: flex;
   padding: 10px;
   height: 100%;
@@ -8,45 +7,44 @@
 .selection-container {
   display: flex;
   width: 30%;
+  background-color: lightgray;
 }
 
-mat-tab-group{
+mat-tab-group {
   width: 100%;
 }
 .select-section {
-  padding: 20px;
-  mat-card {
-    max-width: 30vw;
-    mat-card-title{
-      font-size:x-large;
-    }
-    mat-chip{
-      padding:22px;
-    }
+  padding: 10px;
+  mat-chip {
+    padding: 20px;
   }
 }
 
 .research-section {
-  padding: 20px;
-  mat-card {
-  
-    width:100%
-    mat-card-title{
-      font-size:large;
-    }
-    mat-card-actions{
-      padding: 15px;
-    }
-  }
+  padding: 10px;
 }
 
 .quizz-container {
-display: flex;
+  display: flex;
   width: 70%;
 }
-
 
 .selected {
   background-color: rgb(12, 114, 12);
   color: white;
+}
+
+div .mat-tab-labels {
+  background-color: pink !important;
+}
+.mat-tab-labels {
+  background-color: rebeccapurple;
+}
+
+.mat-tab-label{
+  flex-grow: 1 !important
+}
+
+mat-card-title{
+  padding-bottom: 10px;
 }

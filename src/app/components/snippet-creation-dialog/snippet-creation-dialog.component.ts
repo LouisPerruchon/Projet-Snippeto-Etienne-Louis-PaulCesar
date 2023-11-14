@@ -12,7 +12,7 @@ import { Snippet } from 'src/app/models/snippet';
 export class SnippetCreationDialogComponent implements OnInit {
   code: string = '';
   id: string = '';
-  description: string = '';
+  description: string = ' ';
   explanation: string = '';
   tags: string[] = [];
   dialogTitle: string = '';

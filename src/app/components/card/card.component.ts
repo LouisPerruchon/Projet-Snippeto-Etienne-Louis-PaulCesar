@@ -12,6 +12,7 @@ export class CardComponent implements OnInit {
   snippets: Observable<Snippet[]> | undefined;
   snippetsToLearn$ :  Observable<Snippet[]> = this.qcmGenerator.snippetsToLearn$;
   currentSnippet : Snippet | undefined;
+  test!:Snippet[]
   constructor(private qcmGenerator: QcmGeneratorService) {}
 
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class CardComponent implements OnInit {
     this.snippetsToLearn$.subscribe((snippets: Snippet[]) => {
       if (snippets && snippets.length > 0) {
         this.currentSnippet = snippets[0];
+        this.test = snippets
       }
     });
   }
