@@ -36,7 +36,7 @@ export class CoursCreationDialogComponent implements OnInit {
       this.dialogTitle = 'Add new Cours';
     }
   }
-  cancle() {
+  cancle(): void {
     this.dialogRef.close(null);
   }
 

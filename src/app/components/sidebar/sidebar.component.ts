@@ -37,7 +37,7 @@ export class SidebarComponent implements OnInit {
     this.commentService.getComments().subscribe();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedCours']) {
       if (this.selectedCours) {
         this.snippetsService
@@ -69,11 +69,11 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  addCommentForm() {
+  addCommentForm(): void {
     this.showCommentForm = true;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getDate()}-${
       currentDate.getMonth() + 1
@@ -92,7 +92,7 @@ export class SidebarComponent implements OnInit {
     this.showCommentForm = false;
   }
 
-  cancleCommentForm() {
+  cancleCommentForm(): void {
     this.comment = '';
     this.user_name = '';
     this.showCommentForm = false;

@@ -5,12 +5,9 @@
   hideToggle
 >
   <mat-expansion-panel-header>
-    <mat-panel-title>
-      <h4>{{ snippet.id }}</h4>
+    <mat-panel-title class="snippet-title">
+      {{ snippet.description }}
     </mat-panel-title>
-    <mat-panel-description>
-      <p>{{ snippet.description }}</p>
-    </mat-panel-description>
     <button color="accent" mat-flat-button (click)="openPatchSnippet($event)">
       <mat-icon matTooltip="Update Snippet">edit</mat-icon>
     </button>
@@ -28,9 +25,9 @@
     <div class="code-title">
       <h4 class="code-title-style">Explanation</h4>
     </div>
-    <pre class="code">
-          <p class="code-explanation">{{ snippet.explanation }}</p>
-          </pre>
+    <pre class="pre-explanation">  
+      <code class="explanation"  [highlight]="snippet.explanation"></code>
+      </pre>
   </div>
 
   <mat-chip-list aria-label="Tags">

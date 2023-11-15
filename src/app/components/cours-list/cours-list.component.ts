@@ -29,15 +29,15 @@ export class CoursListComponent implements OnInit {
     this.coursService.getCourses().subscribe();
   }
 
-  snippetChange(snippetData: Snippet | undefined) {
+  snippetChange(snippetData: Snippet | undefined): void {
     this.selectedSnippet = snippetData;
   }
 
-  coursChange(selectedCours: Cours | undefined) {
+  coursChange(selectedCours: Cours | undefined): void {
     this.selectedCours = selectedCours;
   }
 
-  openCreateCoursDialog() {
+  openCreateCoursDialog(): void {
     this.dialog.open(CoursCreationDialogComponent, {
       width: '50%',
     });

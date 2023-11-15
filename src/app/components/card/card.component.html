@@ -27,11 +27,9 @@
   </mat-card>
 
   <mat-card class="quiz-card" *ngIf="allQuizzSnippets.length > 0 && startQuizz">
-    <div class="start-card-header">
-      <mat-card-title>
-        {{ currentSnippet.description }}
-      </mat-card-title>
-    </div>
+    <mat-card-title class="truncate-text">
+      {{ currentSnippet.description }}
+    </mat-card-title>
 
     <mat-card-content
       class="code-and-explanation-container"
@@ -44,7 +42,7 @@
             [ngClass]="{ front: !isFlipped, back: isFlipped }"
           >
             <pre class="pre-code">
-                <code class="code" [lineNumbers]="true" [highlight]="currentSnippet.code"></code>
+                <code class="code"  [highlight]="currentSnippet.code"></code>
                 </pre>
           </div>
           <div
@@ -52,7 +50,8 @@
             [ngClass]="{ front: isFlipped, back: !isFlipped }"
           >
             <pre class="pre-code">
-                <code class="code" [lineNumbers]="true" [highlight]="currentSnippet.explanation">
+              
+                <code class="code"  [highlight]="currentSnippet.explanation">
                 </code>
                 </pre>
           </div>
@@ -67,6 +66,7 @@
           Got Right
         </button>
         <button
+          class="decision-button"
           color="warn"
           mat-raised-button
           (click)="getWrong()"

@@ -19,7 +19,7 @@ export class QcmGeneratorService {
   public snippetsToLearn$: Observable<Snippet[]> =
     this.snippetsToLearnSubject.asObservable();
 
-  constructor(private httpClient: HttpClient, snippetService: SnippetService) {}
+  constructor(private httpClient: HttpClient) {}
 
   getSnippetsToLearn(): Observable<Snippet[]> {
     return this.httpClient.get<Snippet[]>(this.apiUrl).pipe(

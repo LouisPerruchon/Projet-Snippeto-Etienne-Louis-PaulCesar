@@ -26,13 +26,13 @@ export class CoursListItemSnippetComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  showComments() {
+  showComments(): void {
     setTimeout(() => {
       this.snippetChange.emit(this.snippet);
     }, 500);
   }
 
-  hideComments() {
+  hideComments(): void {
     setTimeout(() => {
       this.snippetChange.emit(undefined);
     }, 200);
@@ -40,7 +40,7 @@ export class CoursListItemSnippetComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openPatchSnippet(event: Event) {
+  openPatchSnippet(event: Event): void {
     event.stopPropagation();
 
     const partialSnippetData: Partial<Snippet> = {
@@ -62,7 +62,7 @@ export class CoursListItemSnippetComponent implements OnInit {
     });
   }
 
-  patchSnippets(formData: Partial<Snippet>) {
+  patchSnippets(formData: Partial<Snippet>): void {
     this.snippetsService
       .patchSnippet(this.snippet!.id, formData)
       .subscribe((data) => {

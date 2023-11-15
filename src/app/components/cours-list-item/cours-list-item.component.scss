@@ -24,9 +24,12 @@
 .panel-description {
   width: 50%;
   overflow-x: scroll;
+  align-items: center;
 }
 .panel-title {
   width: 30%;
+  align-items: center;
+  font-size: larger;
   overflow-x: scroll;
 }
 

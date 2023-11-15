@@ -10,10 +10,6 @@ import { QcmGeneratorService } from 'src/app/services/qcm-generator.service';
 })
 export class CardComponent implements OnInit {
   isFlipped: boolean = false;
-
-  flipCard() {
-    this.isFlipped = !this.isFlipped;
-  }
   snippetsToLearn$: Observable<Snippet[]> = this.qcmGenerator.snippetsToLearn$;
   allQuizzSnippets: Snippet[] = [];
   currentSnippet!: Snippet;
@@ -38,11 +34,15 @@ export class CardComponent implements OnInit {
     });
   }
 
-  Start() {
+  Start(): void {
     this.startQuizz = this.allQuizzSnippets.length !== 0 ? true : false;
   }
 
-  getWrong() {
+  flipCard(): void {
+    this.isFlipped = !this.isFlipped;
+  }
+
+  getWrong(): void {
     if (this.allQuizzSnippets) {
       this.currentIndex = this.currentIndex + 1;
       if (this.isFlipped) {
@@ -57,7 +57,7 @@ export class CardComponent implements OnInit {
     }
   }
 
-  getRight() {
+  getRight(): void {
     if (this.allQuizzSnippets) {
       if (this.isFlipped) {
         this.flipCard();

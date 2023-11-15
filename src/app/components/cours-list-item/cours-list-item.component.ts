@@ -43,7 +43,7 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  openCreateSnippetDialog(event: Event) {
+  openCreateSnippetDialog(event: Event): void {
     event.stopPropagation();
     const dialogRef = this.dialog.open(SnippetCreationDialogComponent, {
       width: '50%',
@@ -56,25 +56,25 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  emitSnippet(snippetData: Snippet | undefined) {
+  emitSnippet(snippetData: Snippet | undefined): void {
     this.snippetChange.emit(snippetData);
   }
 
-  emitCours() {
+  emitCours(): void {
     setTimeout(() => {
       this.coursChange.emit(this.cours);
       this.snippetChange.emit(undefined);
     }, 500);
   }
 
-  resetSideBar() {
+  resetSideBar(): void {
     setTimeout(() => {
       this.coursChange.emit(undefined);
       this.snippetChange.emit(undefined);
     }, 200);
   }
 
-  submitForm(formData: Partial<Snippet>) {
+  submitForm(formData: Partial<Snippet>): void {
     const dataToPost: Partial<Snippet> = {
       ...formData,
       courseId: this.cours!.id,
@@ -86,7 +86,7 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  openPatchCours(event: Event) {
+  openPatchCours(event: Event): void {
     event.stopPropagation();
 
     const partialCoursData: Partial<Cours> = {
@@ -106,7 +106,7 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  patchCours(formData: Partial<Cours>) {
+  patchCours(formData: Partial<Cours>): void {
     this.coursService.patchCours(this.cours!.id, formData).subscribe((data) => {
       this.cours = data;
     });
