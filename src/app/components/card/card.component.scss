@@ -1,102 +1,101 @@
 .card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .mat-card {
-    width: 60%;
-    height: 90%;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+  width: 60%;
+  height: 90%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .mat-card-header {
-    height: 10%;
-    /* Réduit la taille du header à 20% */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 10%;
+  /* Réduit la taille du header à 20% */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mat-card-title {
-    margin: 0;
+  margin: 0;
 }
 
 .mat-card-content {
-    height: 75%;
-    display: flex;
-    flex-direction: column;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
 }
 
 .code-container,
 .explanation-container {
-    flex: 1;
+  flex: 1;
 
-    code {
-        overflow: auto;
-        height: 45vh;
-
-    }
+  code {
+    overflow: auto;
+    height: 45vh;
+  }
 }
 
 .mat-card-actions {
-    height: 10%;
-    display: flex;
-    justify-content: space-around;
+  height: 10%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .green {
-    background-color: green;
-    color: white;
+  background-color: green;
+  color: white;
 }
 
 .red {
-    background-color: #d9534f;
-    color: white;
+  background-color: #d9534f;
+  color: white;
 }
 
 .start-quizz {
-    mat-card-title {
-        margin-top: 20%;
+  mat-card-title {
+    margin-top: 20%;
 
-        height: 30%
+    height: 30%;
+  }
+
+  mat-card-actions {
+    margin-top: 40%;
+    height: 20%;
+
+    button {
+      font-size: x-large;
     }
-
-    mat-card-actions {
-        margin-top: 40%;
-        height: 20%;
-
-        button {
-            font-size: x-large;
-        }
-    }
+  }
 }
 
 .flippingcard-container {
-    perspective: 1000px;
+  perspective: 1000px;
 }
 
 .flippingcard {
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
-    cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  cursor: pointer;
 }
 
 .front {
-    transform: rotateY(360deg);
-    display: block;
+  transform: rotateY(360deg);
+  display: block;
 }
 
 .back {
-    transform: rotateY(0deg);
-    display: none;
+  transform: rotateY(0deg);
+  display: none;
 }
 
 .flippingcard.flipped {
-    transform: rotateY(360deg);
+  transform: rotateY(360deg);
 }

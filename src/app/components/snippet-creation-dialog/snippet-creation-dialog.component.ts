@@ -45,7 +45,7 @@ export class SnippetCreationDialogComponent implements OnInit {
     }
   }
 
-  cancle() {
+  cancel() {
     this.dialogRef.close(null);
   }
 
