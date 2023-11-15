@@ -16,7 +16,7 @@ export class CoursService {
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
-  getCourses(): Observable<Cours[]> {
+  public getCourses(): Observable<Cours[]> {
     return this.http.get<Cours[]>(this.apiUrl).pipe(
       tap((data) => {
         // Update the data in the service
@@ -34,7 +34,7 @@ export class CoursService {
     );
   }
 
-  addCours(data: Partial<Cours>): Observable<any> {
+  public addCours(data: Partial<Cours>): Observable<any> {
     return this.http.post<Cours>(this.apiUrl, data).pipe(
       tap(() => {
         // After successfully posting, fetch the updated cours
@@ -49,7 +49,10 @@ export class CoursService {
     );
   }
 
-  patchCours(coursId: string, partialCours: Partial<Cours>): Observable<Cours> {
+  public patchCours(
+    coursId: string,
+    partialCours: Partial<Cours>
+  ): Observable<Cours> {
     const patchAPI = this.apiUrl + '/' + coursId;
 
     return this.http.patch<Cours>(patchAPI, partialCours).pipe(

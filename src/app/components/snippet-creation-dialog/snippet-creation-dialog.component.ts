@@ -11,15 +11,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./snippet-creation-dialog.component.scss'],
 })
 export class SnippetCreationDialogComponent implements OnInit {
-  code: string = '';
-  id: string = '';
-  description: string = '';
-  explanation: string = '';
-  tags: string[] = [];
-  dialogTitle: string = '';
-  addOnBlur = true;
-  form: FormGroup;
   readonly separatorKeysCodes = [SPACE, COMMA] as const;
+  public code: string = '';
+  public id: string = '';
+  public description: string = '';
+  public explanation: string = '';
+  public tags: string[] = [];
+  public dialogTitle: string = '';
+  public addOnBlur = true;
+  public form: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<SnippetCreationDialogComponent>,
@@ -45,11 +45,11 @@ export class SnippetCreationDialogComponent implements OnInit {
     }
   }
 
-  cancel() {
+  public cancel() {
     this.dialogRef.close(null);
   }
 
-  add(event: MatChipInputEvent): void {
+  public add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
@@ -61,14 +61,15 @@ export class SnippetCreationDialogComponent implements OnInit {
     event.chipInput!.clear();
   }
 
-  remove(tag: string): void {
+  public remove(tag: string): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
   }
-  onSubmit(): void {
+
+  public onSubmit(): void {
     const formData: Partial<Snippet> = {
       code: this.code,
       id: this.id,

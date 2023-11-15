@@ -17,7 +17,7 @@ export class CommentService {
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
-  getComments(): Observable<Comment[]> {
+  public getComments(): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.apiUrl).pipe(
       tap((data) => {
         // Update the data in the service
@@ -36,7 +36,7 @@ export class CommentService {
       })
     );
   }
-  getCommentBySnippetId(snippetId: string): Observable<Comment[]> {
+  public getCommentBySnippetId(snippetId: string): Observable<Comment[]> {
     return this.comments$.pipe(
       map((data) => {
         return data.filter((item: Comment) => item.snippet_id === snippetId);
@@ -44,7 +44,7 @@ export class CommentService {
     );
   }
 
-  addComment(comment: Comment): Observable<any> {
+  public addComment(comment: Comment): Observable<any> {
     return this.http.post<Comment>(this.apiUrl, comment).pipe(
       tap(() => {
         // After successfully posting, fetch the updated snippets

@@ -11,10 +11,10 @@ import { CoursService } from 'src/app/services/cours.service';
   styleUrls: ['./cours-creation-dialog.component.scss'],
 })
 export class CoursCreationDialogComponent implements OnInit {
-  title: string = '';
-  description: string = '';
-  dialogTitle: string = '';
-  form: FormGroup;
+  public title: string = '';
+  public description: string = '';
+  public dialogTitle: string = '';
+  public form: FormGroup;
 
   constructor(
     private coursService: CoursService,

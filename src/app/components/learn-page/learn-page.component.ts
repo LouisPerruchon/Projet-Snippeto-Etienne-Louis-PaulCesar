@@ -13,15 +13,15 @@ import { QcmGeneratorService } from 'src/app/services/qcm-generator.service';
   styleUrls: ['./learn-page.component.scss'],
 })
 export class LearnPageComponent implements OnInit {
-  cours: Cours[] = [];
-  tags: string[] = [];
-  selectedTagsForQcm: string[] = [];
-  selectedCoursForQcm: Cours[] = [];
-  tagsInput = new FormControl();
-  coursInput = new FormControl();
-  filteredTagsOptions!: Observable<string[]>;
-  filteredCoursOptions!: Observable<Cours[]>;
-  isQcmGenerationSubmited: boolean = false;
+  public cours: Cours[] = [];
+  public tags: string[] = [];
+  public tagsInput = new FormControl();
+  public coursInput = new FormControl();
+  public filteredTagsOptions!: Observable<string[]>;
+  public filteredCoursOptions!: Observable<Cours[]>;
+
+  private selectedTagsForQcm: string[] = [];
+  private selectedCoursForQcm: Cours[] = [];
 
   constructor(
     private coursService: CoursService,
@@ -52,22 +52,22 @@ export class LearnPageComponent implements OnInit {
     );
   }
 
-  resetSelectedSnippets(isLearningFinished: boolean): void {
+  public resetSelectedSnippets(isLearningFinished: boolean): void {
     if (isLearningFinished) {
       this.selectedCoursForQcm = [];
       this.selectedTagsForQcm = [];
     }
   }
 
-  isSelectedTag(tag: string): boolean {
+  public isSelectedTag(tag: string): boolean {
     return this.selectedTagsForQcm.includes(tag);
   }
 
-  isSelectedCours(cours: Cours): boolean {
+  public isSelectedCours(cours: Cours): boolean {
     return this.selectedCoursForQcm.includes(cours);
   }
 
-  toggleSelectedTag(tag: string): void {
+  public toggleSelectedTag(tag: string): void {
     const index = this.selectedTagsForQcm.indexOf(tag);
 
     if (index !== -1) {
@@ -79,19 +79,19 @@ export class LearnPageComponent implements OnInit {
     this.qcmService.getLearningSnippetsFromTags(this.selectedTagsForQcm);
   }
 
-  filterTags(tagValue: string): string[] {
+  private filterTags(tagValue: string): string[] {
     const filterValue = tagValue.toLowerCase();
     return this.tags.filter((tag) => tag.toLowerCase().includes(filterValue));
   }
 
-  handleTagOptionSelected(selectedTag: string): void {
+  public handleTagOptionSelected(selectedTag: string): void {
     this.selectedTagsForQcm.push(selectedTag);
     this.tagsInput.setValue('');
     this.selectedCoursForQcm = [];
     this.qcmService.getLearningSnippetsFromTags(this.selectedTagsForQcm);
   }
 
-  toggleSelectedCours(seletedCours: Cours): void {
+  public toggleSelectedCours(seletedCours: Cours): void {
     const index = this.selectedCoursForQcm.indexOf(seletedCours);
     if (index !== -1) {
       this.selectedCoursForQcm.splice(index, 1);
@@ -102,14 +102,14 @@ export class LearnPageComponent implements OnInit {
     this.qcmService.getLearningSnippetsFromCourses(this.selectedCoursForQcm);
   }
 
-  filterCours(coursTitle: string): Cours[] {
+  private filterCours(coursTitle: string): Cours[] {
     const filterValue = coursTitle ? coursTitle.toLowerCase() : '';
     return this.cours.filter((cour) =>
       cour.title.toLowerCase().includes(filterValue)
     );
   }
 
-  handleCoursOptionSelected(selectedCours: Cours): void {
+  public handleCoursOptionSelected(selectedCours: Cours): void {
     this.selectedCoursForQcm.push(selectedCours);
     this.coursInput.setValue('');
     this.selectedTagsForQcm = [];

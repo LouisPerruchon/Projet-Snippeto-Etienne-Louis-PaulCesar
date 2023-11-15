@@ -13,10 +13,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cours-list.component.scss'],
 })
 export class CoursListComponent implements OnInit {
-  panelOpenState: boolean = false;
-  selectedCours: Cours | undefined;
-  selectedSnippet: Snippet | undefined;
-  courses$: Observable<Cours[]> = this.coursService.courses$;
+  public panelOpenState: boolean = false;
+  public selectedCours: Cours | undefined;
+  public selectedSnippet: Snippet | undefined;
+  public courses$: Observable<Cours[]> = this.coursService.courses$;
 
   constructor(
     private coursService: CoursService,
@@ -29,15 +29,15 @@ export class CoursListComponent implements OnInit {
     this.coursService.getCourses().subscribe();
   }
 
-  snippetChange(snippetData: Snippet | undefined): void {
+  public snippetChange(snippetData: Snippet | undefined): void {
     this.selectedSnippet = snippetData;
   }
 
-  coursChange(selectedCours: Cours | undefined): void {
+  public coursChange(selectedCours: Cours | undefined): void {
     this.selectedCours = selectedCours;
   }
 
-  openCreateCoursDialog(): void {
+  public openCreateCoursDialog(): void {
     this.dialog.open(CoursCreationDialogComponent, {
       width: '50%',
     });
