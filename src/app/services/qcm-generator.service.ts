@@ -21,7 +21,7 @@ export class QcmGeneratorService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getSnippetsToLearn(): Observable<Snippet[]> {
+  public getSnippetsToLearn(): Observable<Snippet[]> {
     return this.httpClient.get<Snippet[]>(this.apiUrl).pipe(
       tap((data) => {
         this.snippetsToLearnSubject.next([]);
@@ -30,7 +30,7 @@ export class QcmGeneratorService {
     );
   }
 
-  getSnippetsToLearnByCourses(): Observable<Snippet[]> {
+  public getSnippetsToLearnByCourses(): Observable<Snippet[]> {
     const result = this.snippetsToLearn$.pipe(
       map((data) => {
         return data.filter((item: Snippet) =>
@@ -41,14 +41,14 @@ export class QcmGeneratorService {
     return result;
   }
 
-  getLearningSnippetsFromTags(tags: string[]): void {
+  public getLearningSnippetsFromTags(tags: string[]): void {
     const result = this.snippets.filter((item: Snippet) => {
       return tags.some((tag) => item.tags.includes(tag));
     });
     this.snippetsToLearnSubject.next(result);
   }
 
-  getLearningSnippetsFromCourses(courses: Cours[]): void {
+  public getLearningSnippetsFromCourses(courses: Cours[]): void {
     const result = this.snippets.filter((item: Snippet) =>
       courses.map((item) => item.id).includes(item.courseId)
     );

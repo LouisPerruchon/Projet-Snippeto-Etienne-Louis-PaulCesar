@@ -29,7 +29,7 @@ export class CoursListItemComponent implements OnInit {
   @Input() cours: Cours | undefined;
   @Output() snippetChange = new EventEmitter<Snippet>();
   @Output() coursChange = new EventEmitter<Cours>();
-  filteredSnippets: Snippet[] = [];
+  public filteredSnippets: Snippet[] = [];
 
   constructor(
     private coursService: CoursService,
@@ -43,7 +43,7 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  openCreateSnippetDialog(event: Event): void {
+  public openCreateSnippetDialog(event: Event): void {
     event.stopPropagation();
     const dialogRef = this.dialog.open(SnippetCreationDialogComponent, {
       width: '50%',
@@ -56,25 +56,25 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  emitSnippet(snippetData: Snippet | undefined): void {
+  public emitSnippet(snippetData: Snippet | undefined): void {
     this.snippetChange.emit(snippetData);
   }
 
-  emitCours(): void {
+  public emitCours(): void {
     setTimeout(() => {
       this.coursChange.emit(this.cours);
       this.snippetChange.emit(undefined);
     }, 500);
   }
 
-  resetSideBar(): void {
+  public resetSideBar(): void {
     setTimeout(() => {
       this.coursChange.emit(undefined);
       this.snippetChange.emit(undefined);
     }, 200);
   }
 
-  submitForm(formData: Partial<Snippet>): void {
+  private submitForm(formData: Partial<Snippet>): void {
     const dataToPost: Partial<Snippet> = {
       ...formData,
       courseId: this.cours!.id,
@@ -86,7 +86,7 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  openPatchCours(event: Event): void {
+  public openPatchCours(event: Event): void {
     event.stopPropagation();
 
     const partialCoursData: Partial<Cours> = {
@@ -106,7 +106,7 @@ export class CoursListItemComponent implements OnInit {
     });
   }
 
-  patchCours(formData: Partial<Cours>): void {
+  private patchCours(formData: Partial<Cours>): void {
     this.coursService.patchCours(this.cours!.id, formData).subscribe((data) => {
       this.cours = data;
     });

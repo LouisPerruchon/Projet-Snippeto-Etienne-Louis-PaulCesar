@@ -22,7 +22,7 @@ export class SnippetService {
 
   constructor(private httpClient: HttpClient, private _snackBar: MatSnackBar) {}
 
-  getSnippets(): Observable<Snippet[]> {
+  public getSnippets(): Observable<Snippet[]> {
     return this.httpClient.get<Snippet[]>(this.apiUrl).pipe(
       tap((data) => {
         // Update the data in the service
@@ -42,7 +42,7 @@ export class SnippetService {
     );
   }
 
-  addSnippet(snippet: Partial<Snippet>): Observable<any> {
+  public addSnippet(snippet: Partial<Snippet>): Observable<any> {
     return this.httpClient.post<Snippet>(this.apiUrl, snippet).pipe(
       tap(() => {
         // After successfully posting, fetch the updated snippets
@@ -57,7 +57,7 @@ export class SnippetService {
     );
   }
 
-  getSnippetsById(courseId: string): Observable<Snippet[]> {
+  public getSnippetsById(courseId: string): Observable<Snippet[]> {
     const result = this.snippets$.pipe(
       map((data) => {
         return data.filter((item: Snippet) => item.courseId === courseId);
@@ -66,7 +66,7 @@ export class SnippetService {
     return result;
   }
 
-  patchSnippet(
+  public patchSnippet(
     snippetId: string | undefined,
     partialSnippet: Partial<Snippet>
   ): Observable<Snippet> {
@@ -85,7 +85,7 @@ export class SnippetService {
     );
   }
 
-  setSelectedSnippet(obj: Snippet | null): void {
+  public setSelectedSnippet(obj: Snippet | null): void {
     this.selectedSnippetSubject.next(obj);
   }
 }

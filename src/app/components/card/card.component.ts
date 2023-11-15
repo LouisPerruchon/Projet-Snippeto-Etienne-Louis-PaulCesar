@@ -9,13 +9,15 @@ import { QcmGeneratorService } from 'src/app/services/qcm-generator.service';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  isFlipped: boolean = false;
-  snippetsToLearn$: Observable<Snippet[]> = this.qcmGenerator.snippetsToLearn$;
-  allQuizzSnippets: Snippet[] = [];
-  currentSnippet!: Snippet;
-  currentIndex: number = 0;
-  startQuizz: boolean = false;
   @Output() isLearningOver: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public isFlipped: boolean = false;
+  public allQuizzSnippets: Snippet[] = [];
+  public currentSnippet!: Snippet;
+  public currentIndex: number = 0;
+  public startQuizz: boolean = false;
+  private snippetsToLearn$: Observable<Snippet[]> =
+    this.qcmGenerator.snippetsToLearn$;
+
   constructor(private qcmGenerator: QcmGeneratorService) {}
 
   ngOnInit(): void {
@@ -34,15 +36,15 @@ export class CardComponent implements OnInit {
     });
   }
 
-  Start(): void {
+  public Start(): void {
     this.startQuizz = this.allQuizzSnippets.length !== 0 ? true : false;
   }
 
-  flipCard(): void {
+  public flipCard(): void {
     this.isFlipped = !this.isFlipped;
   }
 
-  getWrong(): void {
+  public getWrong(): void {
     if (this.allQuizzSnippets) {
       this.currentIndex = this.currentIndex + 1;
       if (this.isFlipped) {
@@ -57,7 +59,7 @@ export class CardComponent implements OnInit {
     }
   }
 
-  getRight(): void {
+  public getRight(): void {
     if (this.allQuizzSnippets) {
       if (this.isFlipped) {
         this.flipCard();

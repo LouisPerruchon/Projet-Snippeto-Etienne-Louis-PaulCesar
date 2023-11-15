@@ -14,13 +14,13 @@ import { SnippetService } from 'src/app/services/snippet.service';
 export class SidebarComponent implements OnInit {
   @Input() selectedCours: Cours | undefined;
   @Input() selectedSnippet: Snippet | undefined;
-  comments: Comment[] = [];
-  tags: Set<string> | undefined;
-  numberOfSnippets: number = 0;
-  user_name: string = '';
-  comment: string = '';
-  showCommentForm: boolean = false;
-  form: FormGroup;
+  public comments: Comment[] = [];
+  public tags: Set<string> | undefined;
+  public numberOfSnippets: number = 0;
+  public user_name: string = '';
+  public comment: string = '';
+  public showCommentForm: boolean = false;
+  public form: FormGroup;
 
   constructor(
     private commentService: CommentService,
@@ -69,11 +69,11 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  addCommentForm(): void {
+  public addCommentForm(): void {
     this.showCommentForm = true;
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getDate()}-${
       currentDate.getMonth() + 1
@@ -92,7 +92,7 @@ export class SidebarComponent implements OnInit {
     this.showCommentForm = false;
   }
 
-  cancleCommentForm(): void {
+  public cancleCommentForm(): void {
     this.comment = '';
     this.user_name = '';
     this.showCommentForm = false;
