@@ -18,7 +18,7 @@ mat-chip {
   padding: 20px;
 }
 .select-section {
-  padding-top:10px
+  padding-top: 10px;
 }
 
 .quizz-container {
@@ -48,4 +48,8 @@ mat-card-title {
 
 .separator {
   width: 10px;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  font-size: x-large;
 }

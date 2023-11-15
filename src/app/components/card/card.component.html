@@ -8,7 +8,7 @@
         Select Tags or Courses and click on start!
       </mat-card-title>
       <hr />
-      <section>
+      <section class="number-of-snippets">
         Number of Snippets:
         {{ allQuizzSnippets.length > 0 ? allQuizzSnippets.length : "-" }}
       </section>
@@ -59,11 +59,15 @@
         </div>
       </div>
       <div class="button-container">
-        <button class="green" mat-raised-button (click)="getRight()">
+        <button
+          class="decision-button green"
+          mat-raised-button
+          (click)="getRight()"
+        >
           Got Right
         </button>
         <button
-          class="red"
+          color="warn"
           mat-raised-button
           (click)="getWrong()"
           [disabled]="allQuizzSnippets.length === 1"

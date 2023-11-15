@@ -6,13 +6,19 @@
   flex-direction: column;
   justify-content: center;
   scrollbar-width: none;
+  align-items: center;
+
+  .start-button {
+    font-size: x-large;
+  }
 
   .quiz-card {
     height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    margin: 58px 0 !important;
+
+    width: 75%;
 
     .start-card-header,
     .start-card-content {
@@ -60,11 +66,6 @@
       color: white;
     }
 
-    .red {
-      background-color: #d9534f;
-      color: white;
-    }
-
     .flippingcard-container {
       perspective: 2000px;
       flex-grow: 1;
@@ -103,6 +104,12 @@
       display: flex;
       justify-content: space-evenly;
       padding: 16px;
+
+      .decision-button {
+        font-size: large;
+        width: 20%;
+        height: 50px;
+      }
     }
   }
 }
