@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SnippetCreationDialogComponent implements OnInit {
   code: string = '';
   id: string = '';
-  description: string = ' ';
+  description: string = '';
   explanation: string = '';
   tags: string[] = [];
   dialogTitle: string = '';
