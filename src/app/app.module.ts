@@ -32,7 +32,6 @@ import { CardComponent } from './components/card/card.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { LearnPageComponent } from './components/learn-page/learn-page.component';
-import { CardPageComponent } from './components/card-page/card-page.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +45,6 @@ import { CardPageComponent } from './components/card-page/card-page.component';
     CoursCreationDialogComponent,
     CardComponent,
     LearnPageComponent,
-    CardPageComponent
   ],
 
   imports: [
