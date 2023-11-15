@@ -1,5 +1,5 @@
 <div class="cours-list-container">
-  <div class="accordion-container">
+  <mat-card class="accordion-container">
     <button
       class="cours-creation-button"
       mat-raised-button
@@ -8,21 +8,21 @@
     >
       Create Cours
     </button>
-    <mat-accordion
-      *ngFor="let cours of courses"
-      class="cours-list-acccordion"
-      (click)="setSelectedCours(cours)"
-    >
+
+    <mat-accordion class="cours-list-acccordion" multi="false">
       <app-cours-list-item
-        (snippetChange)="receiveComments($event)"
+        (coursChange)="coursChange($event)"
+        *ngFor="let cours of (courses$ | async)?.reverse()"
+        (snippetChange)="snippetChange($event)"
         [cours]="cours"
       ></app-cours-list-item>
     </mat-accordion>
-  </div>
+  </mat-card>
+
   <div class="separator"></div>
   <app-sidebar
-    [cours]="selectedCours"
-    [commentSnippet]="commentSnippet"
+    [selectedCours]="selectedCours"
+    [selectedSnippet]="selectedSnippet"
     class="side-bar"
   ></app-sidebar>
 </div>

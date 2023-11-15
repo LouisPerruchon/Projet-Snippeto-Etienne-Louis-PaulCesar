@@ -1,0 +1,108 @@
+<div class="learning-section-container">
+  <mat-card class="selection-container">
+    <mat-tab-group color="accent" mat-stretch-tabs>
+      <mat-tab label="Courses">
+        <div class="select-section">
+          <mat-card>
+            <mat-card-title>Filter Snippets by Courses</mat-card-title>
+            <mat-card-content>
+              <mat-form-field>
+                <mat-autocomplete
+                  #auto1="matAutocomplete"
+                  (optionSelected)="
+                    handleCoursOptionSelected($event.option.value)
+                  "
+                >
+                  <mat-option
+                    [value]="option"
+                    *ngFor="let option of filteredCoursOptions | async"
+                    [value]="option"
+                  >
+                    {{ option.title }}
+                  </mat-option>
+                </mat-autocomplete>
+                <input
+                  type="text"
+                  matInput
+                  [formControl]="coursInput"
+                  matInput
+                  [matAutocomplete]="auto1"
+                />
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="select-section">
+          <mat-card>
+            <mat-card-title>Courses</mat-card-title>
+            <mat-card-content>
+              <mat-chip-list>
+                <mat-chip
+                  *ngFor="let cour of cours"
+                  [class.selected]="isSelectedCours(cour)"
+                  (click)="toggleSelectedCours(cour)"
+                >
+                  {{ cour.title }}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Tags">
+        <div class="select-section">
+          <mat-card>
+            <mat-card-title>Filter Snippets by tag </mat-card-title>
+            <mat-card-content>
+              <mat-form-field>
+                <mat-autocomplete
+                  #auto="matAutocomplete"
+                  (optionSelected)="
+                    handleTagOptionSelected($event.option.value)
+                  "
+                >
+                  <mat-option
+                    [value]="option"
+                    *ngFor="let option of filteredTagsOptions | async"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-autocomplete>
+                <input
+                  type="text"
+                  matInput
+                  [formControl]="tagsInput"
+                  matInput
+                  [matAutocomplete]="auto"
+                />
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="select-section">
+          <mat-card>
+            <mat-card-title>Tags</mat-card-title>
+            <mat-card-content>
+              <mat-chip-list>
+                <mat-chip
+                  *ngFor="let tag of tags"
+                  [class.selected]="isSelectedTag(tag)"
+                  (click)="toggleSelectedTag(tag)"
+                >
+                  {{ tag }}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+  <div class="separator"></div>
+  <app-card
+    (isLearningOver)="resetSelectedSnippets($event)"
+    class="quizz-container"
+  >
+  </app-card>
+</div>

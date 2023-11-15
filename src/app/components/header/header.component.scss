@@ -18,11 +18,12 @@
   color: white;
 }
 
-.header-button {
-  font-size: 35px;
-  transition: color 0.3s;
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
 }
 
-.header-button:hover{
-    color: aqua;
+.header-button{
+  font-size: larger;
 }

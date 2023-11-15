@@ -1,23 +1,43 @@
-<h2 mat-dialog-title>Add Snippet</h2>
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
 <div mat-dialog-content>
-  <form (ngSubmit)="onSubmit()">
-    <mat-form-field style="width: 100%" appearance="fill">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <mat-form-field class="w-100" appearance="fill">
       <mat-label>Description</mat-label>
       <textarea
         matInput
         [(ngModel)]="description"
         name="description"
+        formControlName="description"
       ></textarea>
+      <mat-error *ngIf="form.get('description')?.hasError('required')"
+        >Description is required</mat-error
+      >
     </mat-form-field>
-    <mat-form-field style="width: 100%" appearance="fill">
+    <mat-form-field class="w-100" appearance="fill">
       <mat-label>Code</mat-label>
-      <textarea matInput [(ngModel)]="code" name="code"></textarea>
+      <textarea
+        matInput
+        [(ngModel)]="code"
+        name="code"
+        formControlName="code"
+      ></textarea>
+      <mat-error *ngIf="form.get('code')?.hasError('required')"
+        >Code is required</mat-error
+      >
     </mat-form-field>
-    <mat-form-field style="width: 100%" appearance="fill">
+    <mat-form-field class="w-100" appearance="fill">
       <mat-label>Explanation</mat-label>
-      <input matInput [(ngModel)]="explanation" name="explanation" />
+      <textarea
+        matInput
+        [(ngModel)]="explanation"
+        name="explanation"
+        formControlName="explanation"
+      ></textarea>
+      <mat-error *ngIf="form.get('explanation')?.hasError('required')"
+        >Explanation is required</mat-error
+      >
     </mat-form-field>
-    <mat-form-field style="width: 100%" appearance="fill">
+    <mat-form-field class="w-100" appearance="fill">
       <mat-label>Tags</mat-label>
       <mat-chip-list #chipList aria-label="Tags">
         <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
@@ -37,8 +57,17 @@
     </mat-form-field>
 
     <div class="button-container">
-      <button type="reset" color="accent" (click)="cancle()">Cancle</button>
-      <button type="submit" mat-raised-button color="primary">Submit</button>
+      <button type="reset" mat-raised-button color="primary" (click)="cancel()">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        mat-raised-button
+        color="accent"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
     </div>
   </form>
 </div>

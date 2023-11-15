@@ -1,0 +1,80 @@
+<mat-card class="card-container">
+  <mat-card
+    class="quiz-card"
+    *ngIf="!(allQuizzSnippets.length > 0 && startQuizz)"
+  >
+    <div class="start-card-header">
+      <mat-card-title>
+        Select Tags or Courses and click on start!
+      </mat-card-title>
+      <hr />
+      <section class="number-of-snippets">
+        Number of Snippets:
+        {{ allQuizzSnippets.length > 0 ? allQuizzSnippets.length : "-" }}
+      </section>
+    </div>
+    <mat-card-content class="start-card-content">
+      <button
+        class="start-button"
+        [disabled]="allQuizzSnippets.length === 0"
+        mat-raised-button
+        color="accent"
+        (click)="Start()"
+      >
+        Start
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="quiz-card" *ngIf="allQuizzSnippets.length > 0 && startQuizz">
+    <mat-card-title class="truncate-text">
+      {{ currentSnippet.description }}
+    </mat-card-title>
+
+    <mat-card-content
+      class="code-and-explanation-container"
+      style="height: 100%"
+    >
+      <div class="flippingcard-container" (click)="flipCard()">
+        <div class="flippingcard" [class.flipped]="isFlipped">
+          <div
+            class="code-container"
+            [ngClass]="{ front: !isFlipped, back: isFlipped }"
+          >
+            <pre class="pre-code">
+                <code class="code"  [highlight]="currentSnippet.code"></code>
+                </pre>
+          </div>
+          <div
+            class="code-container"
+            [ngClass]="{ front: isFlipped, back: !isFlipped }"
+          >
+            <pre class="pre-code">
+              
+                <code class="code"  [highlight]="currentSnippet.explanation">
+                </code>
+                </pre>
+          </div>
+        </div>
+      </div>
+      <div class="button-container">
+        <button
+          class="decision-button green"
+          mat-raised-button
+          (click)="getRight()"
+        >
+          Got Right
+        </button>
+        <button
+          class="decision-button"
+          color="warn"
+          mat-raised-button
+          (click)="getWrong()"
+          [disabled]="allQuizzSnippets.length === 1"
+        >
+          Got Wrong
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</mat-card>

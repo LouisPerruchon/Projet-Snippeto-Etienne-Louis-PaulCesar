@@ -1,16 +1,41 @@
 .cours-list-item-panel {
+  display: flex;
+  justify-content: space-evenly;
   height: 150px;
 }
-
-
-.cours-snippet-container {
-  padding-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* Adjust the gap as needed */
-  margin: 0 auto; /* Optional: Center the container */
+.mat-expansion-panel {
+  margin-bottom: 15px;
 }
 
 .course-snippet-parent {
   width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: right;
+  gap: 5px;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+.panel-description {
+  width: 50%;
+  overflow-x: scroll;
+  align-items: center;
+}
+.panel-title {
+  width: 30%;
+  align-items: center;
+  font-size: larger;
+  overflow-x: scroll;
+}
+
+.panel-title::-webkit-scrollbar {
+  display: none;
+}
+.panel-description::-webkit-scrollbar {
+  display: none;
 }

@@ -1,0 +1,126 @@
+.card-container {
+  width: 100%;
+  background-color: lightgray;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scrollbar-width: none;
+  align-items: center;
+
+  .truncate-text {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .start-button {
+    font-size: x-large;
+  }
+
+  .quiz-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    width: 75%;
+
+    .start-card-header,
+    .start-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .start-card-content {
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    .start-button {
+      width: 20%;
+      height: 20%;
+    }
+
+    .mat-card-title {
+      margin: 0;
+    }
+
+    .code-and-explanation-container,
+    .code-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
+      .pre-code {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        text-wrap: wrap;
+
+        .code {
+          flex-grow: 1;
+          overflow: auto;
+          font-size: large;
+        }
+      }
+    }
+
+    .green {
+      background-color: green;
+      color: white;
+    }
+
+    .flippingcard-container {
+      perspective: 2000px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .flippingcard {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+        cursor: pointer;
+
+        &.flipped {
+          transform: rotateY(360deg);
+        }
+
+        .front {
+          transform: rotateY(360deg);
+        }
+
+        .back {
+          transform: rotateY(0deg);
+          display: none;
+        }
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 16px;
+
+      .decision-button {
+        font-size: large;
+        width: 20%;
+        height: 50px;
+      }
+    }
+  }
+}

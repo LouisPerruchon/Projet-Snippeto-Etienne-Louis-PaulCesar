@@ -1,7 +1,7 @@
 .side-bar-container {
+  width: 100%;
   background-color: lightgray;
-  flex-grow: 1;
-  overflow-y: scroll;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   scrollbar-width: none;
@@ -11,12 +11,92 @@
   display: none;
 }
 
+.section {
+  padding-bottom: 10px;
+}
+
+.comment-section {
+  flex-grow: 1;
+  display: flex;
+  height: 100%;
+  overflow-y: hidden;
+  flex-direction: column;
+
+  mat-card {
+    flex-grow: 1;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  mat-card-content {
+    flex-grow: 1;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+  }
+
+  mat-card-content::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .tags-container {
   padding: 5px;
   display: flex;
   gap: 5px; /* Adjust the gap as needed */
 }
+.comment-container {
+  margin-top: 10px;
+  overflow-y: scroll;
+  width: 100%;
+  scrollbar-width: none;
+}
+.comment-container::-webkit-scrollbar {
+  display: none;
+}
 
-.tag {
-  min-width: 50px;
+.comment {
+  display: flex;
+  h3 {
+    flex-grow: 1;
+  }
+  h5 {
+    padding-right: 5px;
+  }
+  p {
+    padding-left: 5px;
+  }
+}
+
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  gap: 5px;
+}
+
+section {
+  padding: 10px;
+}
+section:nth-child(odd) {
+  background: rgb(219, 216, 216);
+}
+
+.create-comment-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+mat-card-title {
+  padding-bottom: 10px;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
 }

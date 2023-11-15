@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { Cours } from 'src/app/models/cours';
 import { Snippet } from 'src/app/models/snippet';
 import { SnippetService } from 'src/app/services/snippet.service';
@@ -8,6 +16,9 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { SnippetCreationDialogComponent } from '../snippet-creation-dialog/snippet-creation-dialog.component';
+import { CoursService } from 'src/app/services/cours.service';
+import { CoursCreationDialogComponent } from '../cours-creation-dialog/cours-creation-dialog.component';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-cours-list-item',
@@ -17,57 +28,87 @@ import { SnippetCreationDialogComponent } from '../snippet-creation-dialog/snipp
 export class CoursListItemComponent implements OnInit {
   @Input() cours: Cours | undefined;
   @Output() snippetChange = new EventEmitter<Snippet>();
+  @Output() coursChange = new EventEmitter<Cours>();
+  filteredSnippets: Snippet[] = [];
 
-  snippets: Snippet[] = [];
   constructor(
+    private coursService: CoursService,
     private snippetsService: SnippetService,
     public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.prepareSnippets();
+    this.snippetsService.getSnippetsById(this.cours!.id).subscribe((data) => {
+      this.filteredSnippets = data.reverse();
+    });
   }
 
-  openCreateSnippetDialog() {
+  openCreateSnippetDialog(event: Event): void {
+    event.stopPropagation();
     const dialogRef = this.dialog.open(SnippetCreationDialogComponent, {
       width: '50%',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: Partial<Snippet>) => {
       if (result !== null) {
         this.submitForm(result);
       }
-      // Handle the form data here
-    });
-  }
-  receiveComments(commentData: Snippet) {
-    this.snippetChange.emit(commentData);
-  }
-
-  prepareSnippets() {
-    this.snippetsService.getSnippets().subscribe((data: Snippet[]) => {
-      this.snippets = this.filteredSnippets(data);
     });
   }
 
-  filteredSnippets(snippets: Snippet[]): Snippet[] {
-    return snippets.filter(
-      (snippet: Snippet) => snippet.courseId === this.cours?.id
-    );
+  emitSnippet(snippetData: Snippet | undefined): void {
+    this.snippetChange.emit(snippetData);
   }
 
-  submitForm(formData: any) {
-    const dataToPost: Snippet = {
+  emitCours(): void {
+    setTimeout(() => {
+      this.coursChange.emit(this.cours);
+      this.snippetChange.emit(undefined);
+    }, 500);
+  }
+
+  resetSideBar(): void {
+    setTimeout(() => {
+      this.coursChange.emit(undefined);
+      this.snippetChange.emit(undefined);
+    }, 200);
+  }
+
+  submitForm(formData: Partial<Snippet>): void {
+    const dataToPost: Partial<Snippet> = {
       ...formData,
       courseId: this.cours!.id,
       comments: [],
     };
 
-    this.snippetsService.addSnippet(dataToPost).subscribe((data) => {
-      this.snippetChange.emit(dataToPost);
-      this.snippetsService.getSnippets().subscribe((data: Snippet[]) => {
-        this.snippets = this.filteredSnippets(data);
-      });
+    this.snippetsService.addSnippet(dataToPost).subscribe((data: Snippet) => {
+      this.snippetChange.emit(data);
+    });
+  }
+
+  openPatchCours(event: Event): void {
+    event.stopPropagation();
+
+    const partialCoursData: Partial<Cours> = {
+      title: this.cours?.title,
+      description: this.cours?.description,
+      id: this.cours?.id,
+    };
+    const dialogRef = this.dialog.open(CoursCreationDialogComponent, {
+      width: '50%',
+      data: partialCoursData,
+    });
+
+    dialogRef.afterClosed().subscribe((result: Partial<Cours>) => {
+      if (result !== null) {
+        this.patchCours(result);
+      }
+    });
+  }
+
+  patchCours(formData: Partial<Cours>): void {
+    this.coursService.patchCours(this.cours!.id, formData).subscribe((data) => {
+      this.cours = data;
     });
   }
 }
