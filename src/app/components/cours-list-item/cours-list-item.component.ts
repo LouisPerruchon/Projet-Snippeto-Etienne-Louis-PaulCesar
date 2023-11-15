@@ -62,12 +62,12 @@ export class CoursListItemComponent implements OnInit {
 
   emitCours() {
     setTimeout(() => {
-    this.coursChange.emit(this.cours);
-    this.snippetChange.emit(undefined);
-  }, 500);
+      this.coursChange.emit(this.cours);
+      this.snippetChange.emit(undefined);
+    }, 500);
   }
 
-  resetSideBar(){
+  resetSideBar() {
     setTimeout(() => {
       this.coursChange.emit(undefined);
       this.snippetChange.emit(undefined);

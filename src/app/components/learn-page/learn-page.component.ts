@@ -48,11 +48,11 @@ export class LearnPageComponent implements OnInit {
     );
     this.filteredCoursOptions = this.coursInput.valueChanges.pipe(
       startWith(''),
-      map((value: string) => this.filterCours(value))
+      map((value: Cours) => this.filterCours(value.title))
     );
   }
   resetSelectedSnippets(isLearningFinished: boolean) {
-    console.log(isLearningFinished)
+    console.log(isLearningFinished);
     if (isLearningFinished) {
       this.selectedCoursForQcm = [];
       this.selectedTagsForQcm = [];
@@ -103,7 +103,7 @@ export class LearnPageComponent implements OnInit {
   }
 
   filterCours(coursTitle: string): Cours[] {
-    const filterValue = coursTitle.toLowerCase();
+    const filterValue = coursTitle ? coursTitle.toLowerCase() : '';
     return this.cours.filter((cour) =>
       cour.title.toLowerCase().includes(filterValue)
     );
