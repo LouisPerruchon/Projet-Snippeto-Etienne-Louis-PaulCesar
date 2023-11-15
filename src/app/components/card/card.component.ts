@@ -25,9 +25,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.qcmGenerator.getSnippetsToLearn().subscribe();
     this.snippetsToLearn$.subscribe((snippets: Snippet[]) => {
-      if (snippets && snippets.length > 0) {
-        this.allQuizzSnippets = snippets;
-      }
+      this.allQuizzSnippets = snippets;
 
       //define currentSnippet (firstSnippet)
       if (!this.currentSnippet) {

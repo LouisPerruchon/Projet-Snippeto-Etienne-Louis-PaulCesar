@@ -1,65 +1,76 @@
-<div class="card-container">
+<mat-card class="card-container">
   <mat-card
-    class="start-quizz"
+    class="quiz-card"
     *ngIf="!(allQuizzSnippets.length > 0 && startQuizz)"
   >
-    <mat-card-header>
+    <div class="start-card-header">
       <mat-card-title>
         Select Tags or Courses and click on start!
       </mat-card-title>
-    </mat-card-header>
-    <mat-card-actions>
-      <button mat-raised-button (click)="Start()">Start Quizz</button>
-    </mat-card-actions>
+      <hr />
+      <section>
+        Number of Snippets:
+        {{ allQuizzSnippets.length > 0 ? allQuizzSnippets.length : "-" }}
+      </section>
+    </div>
+    <mat-card-content class="start-card-content">
+      <button
+        class="start-button"
+        [disabled]="allQuizzSnippets.length === 0"
+        mat-raised-button
+        color="accent"
+        (click)="Start()"
+      >
+        Start
+      </button>
+    </mat-card-content>
   </mat-card>
 
-  <mat-card class="card-code" *ngIf="allQuizzSnippets.length > 0 && startQuizz">
-    <mat-card-header>
+  <mat-card class="quiz-card" *ngIf="allQuizzSnippets.length > 0 && startQuizz">
+    <div class="start-card-header">
       <mat-card-title>
         {{ currentSnippet.description }}
       </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-card-content>
-        <!-- card.component.html -->
+    </div>
 
-        <div class="flippingcard-container" (click)="flipCard()">
-          <div class="flippingcard" [class.flipped]="isFlipped">
-            <div
-              class="code-container"
-              [ngClass]="{ front: !isFlipped, back: isFlipped }"
-            >
-              <pre class="code">
-                <code [lineNumbers]="true" [highlight]="currentSnippet.code"></code>
+    <mat-card-content
+      class="code-and-explanation-container"
+      style="height: 100%"
+    >
+      <div class="flippingcard-container" (click)="flipCard()">
+        <div class="flippingcard" [class.flipped]="isFlipped">
+          <div
+            class="code-container"
+            [ngClass]="{ front: !isFlipped, back: isFlipped }"
+          >
+            <pre class="pre-code">
+                <code class="code" [lineNumbers]="true" [highlight]="currentSnippet.code"></code>
                 </pre>
-            </div>
-            <div
-              class="explanation-container"
-              [ngClass]="{ front: isFlipped, back: !isFlipped }"
-            >
-              <pre
-                class="code"
-              >
-                <code [lineNumbers]="true" [highlight]="currentSnippet.explanation">
+          </div>
+          <div
+            class="code-container"
+            [ngClass]="{ front: isFlipped, back: !isFlipped }"
+          >
+            <pre class="pre-code">
+                <code class="code" [lineNumbers]="true" [highlight]="currentSnippet.explanation">
                 </code>
                 </pre>
-            </div>
           </div>
         </div>
-      </mat-card-content>
+      </div>
+      <div class="button-container">
+        <button class="green" mat-raised-button (click)="getRight()">
+          Got Right
+        </button>
+        <button
+          class="red"
+          mat-raised-button
+          (click)="getWrong()"
+          [disabled]="allQuizzSnippets.length === 1"
+        >
+          Got Wrong
+        </button>
+      </div>
     </mat-card-content>
-    <mat-card-actions>
-      <button class="green" mat-raised-button (click)="getRight()">
-        Get Right
-      </button>
-      <button
-        class="red"
-        mat-raised-button
-        (click)="getWrong()"
-        [disabled]="allQuizzSnippets.length === 1"
-      >
-        Get Wrong
-      </button>
-    </mat-card-actions>
   </mat-card>
-</div>
+</mat-card>
