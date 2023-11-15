@@ -1,6 +1,5 @@
 .learning-section-container {
   display: flex;
-
   height: 100%;
 }
 
@@ -27,7 +26,7 @@ mat-chip {
 }
 
 .selected {
-  background-color: rgb(12, 114, 12);
+  background-color: #ff4081;
   color: white;
 }
 
