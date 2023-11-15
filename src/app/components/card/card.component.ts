@@ -41,7 +41,7 @@ export class CardComponent implements OnInit {
   }
 
   Start() {
-    this.startQuizz = true;
+    this.startQuizz = this.allQuizzSnippets.length !== 0 ? true : false;
   }
 
   getWrong() {

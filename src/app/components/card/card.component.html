@@ -1,55 +1,65 @@
 <div class="card-container">
+  <mat-card
+    class="start-quizz"
+    *ngIf="!(allQuizzSnippets.length > 0 && startQuizz)"
+  >
+    <mat-card-header>
+      <mat-card-title>
+        Select Tags or Courses and click on start!
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-raised-button (click)="Start()">Start Quizz</button>
+    </mat-card-actions>
+  </mat-card>
 
-    <mat-card class="start-quizz" *ngIf="!(allQuizzSnippets.length > 0 && startQuizz)">
-        <mat-card-header>
-            <mat-card-title>
-                Select Tags or Courses and click on start!
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-actions>
-            <button mat-raised-button (click)="Start()">
-                Start Quizz
-            </button>
-        </mat-card-actions>
-    </mat-card>
+  <mat-card class="card-code" *ngIf="allQuizzSnippets.length > 0 && startQuizz">
+    <mat-card-header>
+      <mat-card-title>
+        {{ currentSnippet.description }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-content>
+        <!-- card.component.html -->
 
-    <mat-card class="card-code" *ngIf="allQuizzSnippets.length > 0 && startQuizz">
-        <mat-card-header>
-            <mat-card-title>
-                {{currentSnippet.description}}
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <mat-card-content>
-                <!-- card.component.html -->
-
-                <div class="flippingcard-container" (click)="flipCard()">
-                    <div class="flippingcard" [class.flipped]="isFlipped">
-                        <div class="code-container" [ngClass]="{'front': !isFlipped, 'back': isFlipped}">
-                            <pre class="code">
-                                <code [lineNumbers]="true" [highlight]="currentSnippet.code">
-                                </code>
-                            </pre>
-                        </div>
-                        <div class="explanation-container" [ngClass]="{'front': isFlipped, 'back': !isFlipped}">
-                            <pre class="code">
-                                <code [lineNumbers]="true" [highlight]="currentSnippet.explanation">
-                                </code>
-                            </pre>
-                        </div>
-                    </div>
-                </div>
-
-
-            </mat-card-content>
-        </mat-card-content>
-        <mat-card-actions>
-            <button class='green' mat-raised-button (click)="getRight()">
-                Get Right
-            </button>
-            <button class='red' mat-raised-button (click)="getWrong()">
-                Get Wrong
-            </button>
-        </mat-card-actions>
-    </mat-card>
+        <div class="flippingcard-container" (click)="flipCard()">
+          <div class="flippingcard" [class.flipped]="isFlipped">
+            <div
+              class="code-container"
+              [ngClass]="{ front: !isFlipped, back: isFlipped }"
+            >
+              <pre class="code">
+                <code [lineNumbers]="true" [highlight]="currentSnippet.code"></code>
+                </pre>
+            </div>
+            <div
+              class="explanation-container"
+              [ngClass]="{ front: isFlipped, back: !isFlipped }"
+            >
+              <pre
+                class="code"
+              >
+                <code [lineNumbers]="true" [highlight]="currentSnippet.explanation">
+                </code>
+                </pre>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="green" mat-raised-button (click)="getRight()">
+        Get Right
+      </button>
+      <button
+        class="red"
+        mat-raised-button
+        (click)="getWrong()"
+        [disabled]="allQuizzSnippets.length === 1"
+      >
+        Get Wrong
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
