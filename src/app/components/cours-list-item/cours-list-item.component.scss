@@ -1,11 +1,38 @@
 .cours-list-item-panel {
+  display: flex;
+  justify-content: space-evenly;
   height: 150px;
-  
 }
-.mat-expansion-panel{
+.mat-expansion-panel {
   margin-bottom: 15px;
 }
 
 .course-snippet-parent {
   width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: right;
+  gap: 5px;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+.panel-description {
+  width: 50%;
+  overflow-x: scroll;
+}
+.panel-title {
+  width: 30%;
+  overflow-x: scroll;
+}
+
+.panel-title::-webkit-scrollbar {
+  display: none;
+}
+.panel-description::-webkit-scrollbar {
+  display: none;
 }

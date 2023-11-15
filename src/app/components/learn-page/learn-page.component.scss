@@ -1,0 +1,55 @@
+.learning-section-container {
+  display: flex;
+  padding: 10px;
+  height: 100%;
+}
+
+.selection-container {
+  display: flex;
+  width: 30%;
+  background-color: lightgray;
+}
+
+mat-tab-group {
+  width: 100%;
+}
+
+mat-chip {
+  padding: 20px;
+}
+.select-section {
+  padding-top: 10px;
+}
+
+.quizz-container {
+  display: flex;
+  width: 70%;
+}
+
+.selected {
+  background-color: #ff4081;
+  color: white;
+}
+
+div .mat-tab-labels {
+  background-color: pink !important;
+}
+.mat-tab-labels {
+  background-color: rebeccapurple;
+}
+
+.mat-tab-label {
+  flex-grow: 1 !important;
+}
+
+mat-card-title {
+  padding-bottom: 10px;
+}
+
+.separator {
+  width: 10px;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  font-size: x-large;
+}

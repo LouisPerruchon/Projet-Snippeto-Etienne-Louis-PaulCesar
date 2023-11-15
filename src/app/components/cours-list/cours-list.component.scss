@@ -1,6 +1,5 @@
-/* styles.css (global) or your-component.css (component-specific) */
 .mat-grid-tile-with-border {
-  border: 1px solid #ccc; /* You can adjust the border properties as needed */
+  border: 1px solid #ccc;
 }
 
 .cours-list-container {
@@ -15,8 +14,10 @@
   width: 70%;
   flex-direction: column;
   overflow-y: scroll;
-  scrollbar-width: none;
+
+  background-color: lightgray;
 }
+
 .accordion-container::-webkit-scrollbar {
   display: none;
 }
