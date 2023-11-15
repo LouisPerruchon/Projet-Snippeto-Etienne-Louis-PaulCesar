@@ -4,7 +4,6 @@ import { CoursListComponent } from './components/cours-list/cours-list.component
 import { LearnPageComponent } from './components/learn-page/learn-page.component';
 
 const routes: Routes = [
-  { path: 'qcm/learnpage', component: LearnPageComponent },
   { path: 'courses', component: CoursListComponent },
   { path: 'learn', component: LearnPageComponent },
   { path: '', redirectTo: '/courses', pathMatch: 'full' },
