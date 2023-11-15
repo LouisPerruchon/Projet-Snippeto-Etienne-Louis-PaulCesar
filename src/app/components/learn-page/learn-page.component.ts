@@ -48,7 +48,7 @@ export class LearnPageComponent implements OnInit {
     );
     this.filteredCoursOptions = this.coursInput.valueChanges.pipe(
       startWith(''),
-      map((value: Cours) => this.filterCours(value.title))
+      map((value: string) => this.filterCours(value))
     );
   }
 
