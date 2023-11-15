@@ -103,7 +103,7 @@ export class LearnPageComponent implements OnInit {
   }
 
   private filterCours(coursTitle: string): Cours[] {
-    const filterValue = coursTitle ? coursTitle.toLowerCase() : '';
+    const filterValue = coursTitle ? coursTitle.toString().toLowerCase() : '';
     return this.cours.filter((cour) =>
       cour.title.toLowerCase().includes(filterValue)
     );
